@@ -85,16 +85,30 @@
       {
         "title": "Velvet Lounge",
         "category": "Nightclub Website",
-        "description": "A nightclub website with VIP booking, event calendar, and photo gallery. Modern design with smooth animations.",
-        "gradient": "from-purple-500/20 to-red-500/20",
+        "description": "Luxury nightclub website with VIP booking, event calendar, and photo gallery. Modern design with smooth animations.",
+        "gradient": "from-purple-500/20 to-pink-500/20",
         "letter": "V"
       },
       {
         "title": "ReserveNow",
         "category": "Booking Platform",
         "description": "Complete table reservation system with real-time availability, payment processing, and admin dashboard.",
-        "gradient": "from-blue-500/20 to-green-500/20",
+        "gradient": "from-blue-500/20 to-cyan-500/20",
         "letter": "R"
+      },
+      {
+        "title": "EventHub Pro",
+        "category": "SaaS Dashboard",
+        "description": "Event management platform with analytics, ticket sales, and customer relationship management.",
+        "gradient": "from-green-500/20 to-emerald-500/20",
+        "letter": "E"
+      },
+      {
+        "title": "Noir Club",
+        "category": "Mobile App",
+        "description": "Cross-platform mobile app for club-goers. Event discovery, ticket purchases, and social features.",
+        "gradient": "from-orange-500/20 to-red-500/20",
+        "letter": "N"
       }
     ]
   },
