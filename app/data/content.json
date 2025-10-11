@@ -1,0 +1,292 @@
+{
+  "site": {
+    "name": "Plex",
+    "tagline": "Premium Digital Agency for Nightlife & Entertainment",
+    "description": "We build stunning web applications, booking systems, and digital experiences for nightlife and entertainment venues. Modern tech stack, enterprise-grade solutions."
+  },
+  "navigation": {
+    "links": [
+      { "name": "Services", "href": "#services" },
+      { "name": "Portfolio", "href": "#portfolio" },
+      { "name": "Process", "href": "#process" },
+      { "name": "Pricing", "href": "#pricing" },
+      { "name": "About", "href": "#about" }
+    ],
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Plex",
+    "headline": "We Build Premium Digital",
+    "highlight": "Experiences",
+    "subheadline": "For nightlife & entertainment venues. Transform your online presence with stunning web applications that drive bookings and revenue.",
+    "cta": {
+      "primary": "Get Started",
+      "secondary": "View Our Work"
+    }
+  },
+  "services": {
+    "title": "What We",
+    "highlight": "Build",
+    "subtitle": "End-to-end digital solutions tailored for your business",
+    "items": [
+      {
+        "title": "Landing Pages & Websites",
+        "description": "High-converting websites that drive traffic and bookings",
+        "features": [
+          "Custom responsive design",
+          "SEO optimization",
+          "Fast loading speeds",
+          "Mobile-first approach"
+        ],
+        "icon": "code"
+      },
+      {
+        "title": "Web Applications & SaaS",
+        "description": "Custom web applications to streamline your business operations",
+        "features": [
+          "User authentication",
+          "Real-time data sync",
+          "Admin dashboards",
+          "API integrations"
+        ],
+        "icon": "zap"
+      },
+      {
+        "title": "Booking & Reservation Systems",
+        "description": "Seamless booking experiences for your customers",
+        "features": [
+          "Calendar integration",
+          "Payment processing",
+          "Email notifications",
+          "Availability management"
+        ],
+        "icon": "calendar"
+      },
+      {
+        "title": "Mobile Applications",
+        "description": "Native mobile apps for iOS and Android",
+        "features": [
+          "Cross-platform development",
+          "Push notifications",
+          "Offline functionality",
+          "App store deployment"
+        ],
+        "icon": "smartphone"
+      }
+    ]
+  },
+  "portfolio": {
+    "title": "Our",
+    "highlight": "Work",
+    "subtitle": "Crafted with precision and passion",
+    "viewProject": "View Project",
+    "note": "* Concept projects showcasing our capabilities and design approach",
+    "projects": [
+      {
+        "title": "Velvet Lounge",
+        "category": "Nightclub Website",
+        "description": "A nightclub website with VIP booking, event calendar, and photo gallery. Modern design with smooth animations.",
+        "gradient": "from-purple-500/20 to-red-500/20",
+        "letter": "V"
+      },
+      {
+        "title": "ReserveNow",
+        "category": "Booking Platform",
+        "description": "Complete table reservation system with real-time availability, payment processing, and admin dashboard.",
+        "gradient": "from-blue-500/20 to-green-500/20",
+        "letter": "R"
+      }
+    ]
+  },
+  "techStack": {
+    "title": "Our Tech",
+    "highlight": "Stack",
+    "subtitle": "Modern technologies for exceptional results",
+    "technologies": [
+      { "name": "Next.js", "category": "Frontend" },
+      { "name": "React", "category": "Frontend" },
+      { "name": "TypeScript", "category": "Language" },
+      { "name": "Node.js", "category": "Backend" },
+      { "name": "PostgreSQL", "category": "Database" },
+      { "name": "Tailwind CSS", "category": "Styling" },
+      { "name": "React Native", "category": "Mobile" }
+    ],
+    "benefits": [
+      {
+        "icon": "⚡",
+        "title": "Lightning Fast",
+        "description": "Optimized performance and blazing-fast load times for the best user experience"
+      },
+      {
+        "icon": "🔒",
+        "title": "Secure & Scalable",
+        "description": "Built with security best practices and designed to scale with your growing business"
+      },
+      {
+        "icon": "🛠️",
+        "title": "Maintainable",
+        "description": "Clean, documented code that's easy to update and extend as your needs evolve"
+      }
+    ]
+  },
+  "process": {
+    "title": "Our",
+    "highlight": "Process",
+    "subtitle": "How we bring your vision to life",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Discovery & Strategy",
+        "description": "We dive deep into your business goals, target audience, and technical requirements to create a roadmap for success."
+      },
+      {
+        "step": "02",
+        "title": "Design & Prototyping",
+        "description": "Our team creates stunning designs and interactive prototypes that align with your brand and user expectations."
+      },
+      {
+        "step": "03",
+        "title": "Development & Testing",
+        "description": "Clean, efficient code development with rigorous testing to ensure your application performs flawlessly."
+      },
+      {
+        "step": "04",
+        "title": "Launch & Support",
+        "description": "Smooth deployment, team training, and ongoing maintenance. We're here to help your business thrive."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Transparent",
+    "highlight": "Pricing",
+    "subtitle": "Choose the package that fits your needs",
+    "packages": [
+      {
+        "name": "Starter",
+        "price": "$2,500 - $4,500",
+        "description": "Perfect for marketing websites and landing pages",
+        "features": [
+          "Up to 5 pages",
+          "Mobile responsive design",
+          "Basic SEO optimization",
+          "Contact forms",
+          "Content management system",
+          "1 month support",
+          "Google Analytics setup"
+        ],
+        "highlighted": false
+      },
+      {
+        "name": "Professional",
+        "price": "$6,500 - $12,000",
+        "description": "Full-featured websites with custom functionality",
+        "features": [
+          "Unlimited pages",
+          "Custom design & branding",
+          "Advanced SEO & performance",
+          "Booking/reservation system",
+          "Admin dashboard",
+          "Database integration",
+          "Payment processing (Stripe/PayPal)",
+          "3 months support & maintenance",
+          "SSL certificate & hosting setup"
+        ],
+        "highlighted": true
+      },
+      {
+        "name": "Enterprise",
+        "price": "$15,000 - $35,000",
+        "description": "Custom applications and comprehensive solutions",
+        "features": [
+          "Custom SaaS/web application",
+          "Mobile app (iOS & Android)",
+          "Advanced integrations (APIs)",
+          "User management & authentication",
+          "Analytics & reporting dashboard",
+          "Custom API development",
+          "6 months support & maintenance",
+          "Priority support & updates",
+          "Performance optimization"
+        ],
+        "highlighted": false
+      }
+    ],
+    "note": "All packages include project management, testing, and deployment.",
+    "customQuote": "Need a custom quote?"
+  },
+  "about": {
+    "title": "About",
+    "highlight": "Plex",
+    "content": {
+      "mission": "We specialize in creating digital experiences that drive results for nightlife and entertainment venues. Our modern tech stack and industry expertise ensure your online presence stands out.",
+      "values": [
+        {
+          "title": "Quality First",
+          "description": "Every project is built with enterprise-grade standards and attention to detail."
+        },
+        {
+          "title": "Industry Focus",
+          "description": "We understand the unique needs of nightlife and entertainment businesses."
+        },
+        {
+          "title": "Modern Technology",
+          "description": "Using the latest tools and frameworks for optimal performance and scalability."
+        }
+      ]
+    },
+    "stats": [
+      { "icon": "users", "label": "Projects", "value": "50+" },
+      { "icon": "clock", "label": "Experience", "value": "5 Years" },
+      { "icon": "award", "label": "Quality Code", "value": "Enterprise" },
+      { "icon": "trending-up", "label": "Growth", "value": "Driven" }
+    ]
+  },
+  "contact": {
+    "title": "Get In",
+    "highlight": "Touch",
+    "subtitle": "Ready to transform your digital presence? Let's talk.",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "company": "Company Name",
+      "project": "Project Type",
+      "budget": "Budget Range",
+      "message": "Tell us about your project",
+      "submit": "Send Message"
+    },
+    "expectations": {
+      "title": "What to expect:",
+      "items": [
+        "Response within 24 hours",
+        "Free consultation call",
+        "Custom project proposal",
+        "No commitment required"
+      ]
+    }
+  },
+  "footer": {
+    "description": "Building premium digital experiences for nightlife and entertainment venues. Modern technology, exceptional results.",
+    "quickLinksTitle": "Quick Links",
+    "contactTitle": "Get in Touch",
+    "email": "contact@plex.ee",
+    "builtWith": "Built with Next.js, TypeScript & Tailwind CSS",
+    "links": {
+      "quick": [
+        { "name": "Services", "href": "#services" },
+        { "name": "Portfolio", "href": "#portfolio" },
+        { "name": "Process", "href": "#process" },
+        { "name": "Contact", "href": "#contact" }
+      ],
+      "legal": [
+        { "name": "Privacy Policy", "href": "/privacy" },
+        { "name": "Terms of Service", "href": "/terms" }
+      ]
+    },
+    "social": {
+      "twitter": "https://twitter.com/plex",
+      "linkedin": "https://linkedin.com/company/plex",
+      "github": "https://github.com/plex"
+    },
+    "copyright": "All rights reserved."
+  }
+}
