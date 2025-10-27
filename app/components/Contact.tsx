@@ -191,7 +191,7 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   className='p-4 bg-green-500/10 border border-green-500/50 rounded-lg text-center text-green-400'
                 >
-                  Message sent successfully! We'll get back to you soon.
+                  Message sent successfully! We&apos;ll get back to you soon.
                 </motion.div>
               )}
             </form>
