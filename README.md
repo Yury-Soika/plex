@@ -57,6 +57,12 @@ app/
 npm install
 ```
 
+### Set Up Environment Variables
+
+```bash
+cp env.template .env
+```
+
 ### Run Development Server
 
 ```bash
@@ -64,6 +70,19 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 🌍 Environment Variables
+
+The application uses these essential environment variables:
+
+- `NODE_ENV` - Environment (development/production)
+- `PORT` - Server port (default: 3000)
+- `HOSTNAME` - Server hostname
+- `NEXT_PUBLIC_SITE_URL` - Your website URL
+- `NEXT_TELEMETRY_DISABLED` - Disable Next.js telemetry
+- `NODE_OPTIONS` - Node.js memory optimization
+
+Copy `env.template` to `.env.local` for development or `.env.production` for production.
 
 ### Build for Production
 
