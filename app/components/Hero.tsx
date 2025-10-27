@@ -12,7 +12,10 @@ export default function Hero() {
   };
 
   return (
-    <section className='relative min-h-screen flex items-center justify-center overflow-hidden'>
+    <section
+      className='relative min-h-screen flex items-center justify-center overflow-hidden pt-20'
+      style={{ paddingTop: '80px' }}
+    >
       {/* Background gradient effect */}
       <div className='absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-blue-900/20' />
 

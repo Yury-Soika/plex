@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { getNavigation, getSiteInfo } from '../utils/content';
@@ -17,14 +16,9 @@ export default function Navbar() {
   };
 
   return (
-    <motion.nav
-      className='fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-white/5'
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='flex items-center justify-between h-16'>
+    <nav className='fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-lg border-b border-white/8'>
+      <div className='max-w-7xl mx-auto px-6 sm:px-6 lg:px-8'>
+        <div className='flex items-center justify-between py-4'>
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -63,12 +57,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <motion.div
-            className='md:hidden py-4 border-t border-white/5'
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-          >
+          <div className='md:hidden py-4 border-t border-white/5'>
             <div className='flex flex-col gap-4'>
               {navigation.links.map((link) => (
                 <button
@@ -86,9 +75,9 @@ export default function Navbar() {
                 {navigation.contact}
               </button>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
-    </motion.nav>
+    </nav>
   );
 }
