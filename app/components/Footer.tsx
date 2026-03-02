@@ -3,7 +3,7 @@
 import { Github, Linkedin, Twitter } from 'lucide-react';
 import { getFooter, getSiteInfo } from '../utils/content';
 
-export default function Footer() {
+const Footer = () => {
   const currentYear = new Date().getFullYear();
   const footerData = getFooter();
   const siteInfo = getSiteInfo();
@@ -99,4 +99,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

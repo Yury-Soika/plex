@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { getTechStack } from '../utils/content';
 
-export default function TechStack() {
+const TechStack = () => {
   const techData = getTechStack();
   const technologies = techData.technologies;
   return (
@@ -80,4 +80,6 @@ export default function TechStack() {
       </div>
     </section>
   );
-}
+};
+
+export default TechStack;

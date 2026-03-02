@@ -5,7 +5,7 @@ import { Mail, MessageSquare, Send } from 'lucide-react';
 import { useState } from 'react';
 import { getContact } from '../utils/content';
 
-export default function Contact() {
+const Contact = () => {
   const contactData = getContact();
   const [formData, setFormData] = useState({
     name: '',
@@ -200,4 +200,6 @@ export default function Contact() {
       </div>
     </section>
   );
-}
+};
+
+export default Contact;

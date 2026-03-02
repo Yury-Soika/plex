@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Globe, Users, Award, TrendingUp, Clock } from 'lucide-react';
 import { getAbout } from '../utils/content';
 
-export default function About() {
+const About = () => {
   const aboutData = getAbout();
 
   const iconMap = {
@@ -94,4 +94,6 @@ export default function About() {
       </div>
     </section>
   );
-}
+};
+
+export default About;

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { getPageTitle, getSiteInfo } from './utils/content';
 import './globals.css';
+import CookieBanner from './components/CookieBanner';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -23,11 +24,11 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
   return (
     <html lang='en'>
       <body
@@ -35,7 +36,10 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         {children}
+        <CookieBanner />
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

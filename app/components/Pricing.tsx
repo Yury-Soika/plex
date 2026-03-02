@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { getPricing } from '../utils/content';
 
-export default function Pricing() {
+const Pricing = () => {
   const pricingData = getPricing();
   const packages = pricingData.packages;
   return (
@@ -105,4 +105,6 @@ export default function Pricing() {
       </div>
     </section>
   );
-}
+};
+
+export default Pricing;

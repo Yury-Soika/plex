@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Search, Palette, Code, Rocket } from 'lucide-react';
 import { getProcess } from '../utils/content';
 
-export default function Process() {
+const Process = () => {
   const processData = getProcess();
 
   const iconMap = {
@@ -100,4 +100,6 @@ export default function Process() {
       </div>
     </section>
   );
-}
+};
+
+export default Process;

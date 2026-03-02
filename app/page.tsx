@@ -9,7 +9,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-export default function Home() {
+const Home = () => {
   return (
     <main className='min-h-screen'>
       <Navbar />
@@ -24,4 +24,6 @@ export default function Home() {
       <Footer />
     </main>
   );
-}
+};
+
+export default Home;

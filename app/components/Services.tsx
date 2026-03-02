@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Code2, Smartphone, Calendar, Sparkles } from 'lucide-react';
 import { getServices } from '../utils/content';
 
-export default function Services() {
+const Services = () => {
   const servicesData = getServices();
 
   const iconMap = {
@@ -82,4 +82,6 @@ export default function Services() {
       </div>
     </section>
   );
-}
+};
+
+export default Services;

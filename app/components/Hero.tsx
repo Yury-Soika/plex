@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import { getHero } from '../utils/content';
 
-export default function Hero() {
+const Hero = () => {
   const hero = getHero();
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -104,4 +104,6 @@ export default function Hero() {
       <div className='absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl' />
     </section>
   );
-}
+};
+
+export default Hero;

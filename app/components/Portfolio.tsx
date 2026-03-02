@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { getPortfolio } from '../utils/content';
 
-export default function Portfolio() {
+const Portfolio = () => {
   const portfolioData = getPortfolio();
   const projects = portfolioData.projects;
   return (
@@ -89,4 +89,6 @@ export default function Portfolio() {
       </div>
     </section>
   );
-}
+};
+
+export default Portfolio;
