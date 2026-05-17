@@ -39,6 +39,7 @@ echo "==> Creating production-build.tar.gz"
 # On macOS, avoid xattrs so Linux tar won't warn when extracting
 COPYFILE_DISABLE=1 tar czf production-build.tar.gz \
   .next \
+  app.js \
   package.json \
   package-lock.json \
   public \
