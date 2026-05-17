@@ -1,5 +1,6 @@
 'use client';
 
+import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { Mail, MessageSquare, Send } from 'lucide-react';
 import { useState } from 'react';
@@ -16,13 +17,25 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus('idle');
 
-    // Simulate form submission
-    setStatus('success');
-    setTimeout(() => {
-      setStatus('idle');
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          time: new Date().toLocaleString(),
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+      setStatus('success');
       setFormData({ name: '', email: '', message: '' });
-    }, 3000);
+    } catch {
+      setStatus('error');
+    }
   };
 
   const handleChange = (
@@ -192,6 +205,16 @@ const Contact = () => {
                   className='p-4 bg-green-500/10 border border-green-500/50 rounded-lg text-center text-green-400'
                 >
                   Message sent successfully! We&apos;ll get back to you soon.
+                </motion.div>
+              )}
+
+              {status === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className='p-4 bg-red-500/10 border border-red-500/50 rounded-lg text-center text-red-400'
+                >
+                  Something went wrong. Please try again or email us directly.
                 </motion.div>
               )}
             </form>

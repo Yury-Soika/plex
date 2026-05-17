@@ -2,16 +2,35 @@
 
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { getNavigation, getSiteInfo } from '../utils/content';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigation = getNavigation();
   const siteInfo = getSiteInfo();
+  const pathname = usePathname();
+  const router = useRouter();
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: 'smooth' });
+  const handleLogoClick = () => {
+    if (pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      router.push('/');
+    }
+    setIsOpen(false);
+  };
+
+  const navigateToSection = (href: string) => {
+    if (pathname === '/') {
+      const element = document.querySelector(href);
+      element?.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false);
+      return;
+    }
+
+    const hash = href.startsWith('#') ? href : `#${href}`;
+    router.push(`/${hash}`);
     setIsOpen(false);
   };
 
@@ -21,7 +40,7 @@ const Navbar = () => {
         <div className='flex items-center justify-between py-4'>
           {/* Logo */}
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={handleLogoClick}
             className='text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent'
           >
             {siteInfo.name}
@@ -32,14 +51,14 @@ const Navbar = () => {
             {navigation.links.map((link) => (
               <button
                 key={link.name}
-                onClick={() => scrollToSection(link.href)}
+                onClick={() => navigateToSection(link.href)}
                 className='text-foreground-muted hover:text-white transition-colors'
               >
                 {link.name}
               </button>
             ))}
             <button
-              onClick={() => scrollToSection('#contact')}
+              onClick={() => navigateToSection('#contact')}
               className='px-6 py-2 bg-accent hover:bg-accent-hover text-white font-semibold rounded-lg transition-colors'
             >
               {navigation.contact}
@@ -62,14 +81,14 @@ const Navbar = () => {
               {navigation.links.map((link) => (
                 <button
                   key={link.name}
-                  onClick={() => scrollToSection(link.href)}
+                  onClick={() => navigateToSection(link.href)}
                   className='text-foreground-muted hover:text-white transition-colors text-left'
                 >
                   {link.name}
                 </button>
               ))}
               <button
-                onClick={() => scrollToSection('#contact')}
+                onClick={() => navigateToSection('#contact')}
                 className='px-6 py-2 bg-accent hover:bg-accent-hover text-white font-semibold rounded-lg transition-colors text-center'
               >
                 {navigation.contact}
