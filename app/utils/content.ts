@@ -19,6 +19,8 @@ export type Project = {
   description: string;
   gradient: string;
   letter: string;
+  url?: string;
+  image?: string;
 };
 
 export type TechItem = {

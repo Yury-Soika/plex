@@ -87,14 +87,18 @@
         "category": "Nightclub Website",
         "description": "Luxury nightclub website with VIP booking, event calendar, and photo gallery. Modern design with smooth animations.",
         "gradient": "from-purple-500/20 to-pink-500/20",
-        "letter": "V"
+        "letter": "V",
+        "url": "https://velvet.plex.ee",
+        "image": "/preview-velvet-lounge.png"
       },
       {
-        "title": "ReserveNow",
+        "title": "Nightfall Terrace",
         "category": "Booking Platform",
-        "description": "Complete table reservation system with real-time availability, payment processing, and admin dashboard.",
+        "description": "Complete table reservation system with real-time availability, interactive booking flow, and a full admin dashboard.",
         "gradient": "from-blue-500/20 to-cyan-500/20",
-        "letter": "R"
+        "letter": "N",
+        "url": "https://nightfall.plex.ee",
+        "image": "/preview-nightfall-terrace.png"
       },
       {
         "title": "EventHub Pro",

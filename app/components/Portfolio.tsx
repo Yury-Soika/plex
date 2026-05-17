@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 import { getPortfolio } from '../utils/content';
 
 const Portfolio = () => {
@@ -41,21 +42,41 @@ const Portfolio = () => {
               viewport={{ once: true }}
               whileHover={{ scale: 1.02 }}
             >
-              {/* Project Image Placeholder */}
+              {/* Project Preview */}
               <div
-                className={`relative h-64 bg-gradient-to-br ${project.gradient} flex items-center justify-center`}
+                className={`relative h-64 bg-gradient-to-br ${project.gradient} flex items-center justify-center overflow-hidden`}
               >
-                <div className='text-6xl font-bold text-white/10'>
-                  {project.letter}
-                </div>
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className='object-cover object-top'
+                  />
+                ) : (
+                  <div className='text-6xl font-bold text-white/10'>
+                    {project.letter}
+                  </div>
+                )}
 
                 {/* Hover Overlay */}
                 <div className='absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center'>
                   <div className='flex gap-4'>
-                    <button className='px-8 py-1 bg-accent hover:bg-accent-hover text-white rounded-lg font-semibold transition-colors duration-300 flex items-center gap-2'>
-                      {portfolioData.viewProject}
-                      <ExternalLink className='w-4 h-4' />
-                    </button>
+                    {project.url ? (
+                      <a
+                        href={project.url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='px-8 py-1 bg-accent hover:bg-accent-hover text-white rounded-lg font-semibold transition-colors duration-300 flex items-center gap-2'
+                      >
+                        {portfolioData.viewProject}
+                        <ExternalLink className='w-4 h-4' />
+                      </a>
+                    ) : (
+                      <span className='px-8 py-1 bg-white/10 text-white/50 rounded-lg font-semibold flex items-center gap-2 cursor-not-allowed'>
+                        Coming Soon
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
