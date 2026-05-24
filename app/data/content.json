@@ -248,10 +248,10 @@
       ]
     },
     "stats": [
-      { "icon": "users", "label": "Projects", "value": "50+" },
-      { "icon": "clock", "label": "Experience", "value": "5 Years" },
-      { "icon": "award", "label": "Quality Code", "value": "Enterprise" },
-      { "icon": "trending-up", "label": "Growth", "value": "Driven" }
+      { "icon": "users", "label": "Live products", "value": "3" },
+      { "icon": "clock", "label": "Built with", "value": "Next.js + NestJS" },
+      { "icon": "award", "label": "Code quality", "value": "Enterprise-grade" },
+      { "icon": "trending-up", "label": "Focus", "value": "Nightlife & hospitality" }
     ]
   },
   "contact": {

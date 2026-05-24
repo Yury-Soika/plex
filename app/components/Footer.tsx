@@ -9,39 +9,43 @@ const Footer = () => {
   const siteInfo = getSiteInfo();
 
   return (
-    <footer className='bg-surface/50 border-t border-white/5 py-20'>
-      <div className='w-full max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 xl:px-20'>
-        <div className='grid md:grid-cols-3 gap-8 mb-8'>
-          {/* Brand */}
+    <footer className='border-t border-white/10 bg-background py-16'>
+      <div className='plex-container'>
+        <div className='grid md:grid-cols-3 gap-10 mb-12'>
           <div>
-            <div className='text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-4'>
-              {siteInfo.name}
+            <div className='flex items-center gap-2.5 mb-4'>
+              <span className='inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-purple-500 to-violet-400 text-slate-950 font-bold text-sm'>
+                P
+              </span>
+              <span className='text-lg font-semibold tracking-tight'>
+                {siteInfo.name}
+              </span>
             </div>
-            <p className='text-foreground-muted text-sm leading-relaxed'>
+            <p className='text-sm text-foreground-muted leading-relaxed max-w-xs'>
               {footerData.description}
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className='font-bold mb-4'>{footerData.quickLinksTitle}</h3>
-            <ul className='space-y-2'>
+            <h3 className='text-xs font-medium uppercase tracking-[0.18em] text-foreground-dim mb-4'>
+              {footerData.quickLinksTitle}
+            </h3>
+            <ul className='space-y-2.5'>
               {footerData.links.quick.map((link) => (
                 <li key={link.name}>
                   {link.href.startsWith('/') ? (
                     <Link
                       href={link.href}
-                      className='text-foreground-muted hover:text-accent transition-colors text-sm'
+                      className='text-sm text-foreground-muted hover:text-accent transition-colors'
                     >
                       {link.name}
                     </Link>
                   ) : (
                     <button
                       onClick={() => {
-                        const element = document.querySelector(link.href);
-                        element?.scrollIntoView({ behavior: 'smooth' });
+                        document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
                       }}
-                      className='text-foreground-muted hover:text-accent transition-colors text-sm'
+                      className='text-sm text-foreground-muted hover:text-accent transition-colors'
                     >
                       {link.name}
                     </button>
@@ -51,28 +55,35 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h3 className='font-bold mb-4'>{footerData.contactTitle}</h3>
-            <p className='text-foreground-muted text-sm mb-4'>
-              <a
-                href={`mailto:${footerData.email}`}
-                className='hover:text-accent transition-colors'
-              >
-                {footerData.email}
-              </a>
-            </p>
+            <h3 className='text-xs font-medium uppercase tracking-[0.18em] text-foreground-dim mb-4'>
+              {footerData.contactTitle}
+            </h3>
+            <a
+              href={`mailto:${footerData.email}`}
+              className='text-sm text-foreground-muted hover:text-accent transition-colors'
+            >
+              {footerData.email}
+            </a>
+            <div className='mt-4 flex flex-wrap gap-3'>
+              {footerData.links.legal.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className='text-xs text-foreground-dim hover:text-foreground-muted transition-colors'
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className='pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4'>
-          <p className='text-foreground-muted text-sm'>
+        <div className='pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-foreground-dim'>
+          <p>
             © {currentYear} {siteInfo.name}. {footerData.copyright}
           </p>
-          <p className='text-foreground-muted text-sm'>
-            {footerData.builtWith}
-          </p>
+          <p>{footerData.builtWith}</p>
         </div>
       </div>
     </footer>

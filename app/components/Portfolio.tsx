@@ -1,112 +1,113 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ArrowUpRight, Globe } from 'lucide-react';
 import Image from 'next/image';
 import { getPortfolio } from '../utils/content';
 
 const Portfolio = () => {
   const portfolioData = getPortfolio();
   const projects = portfolioData.projects;
+
   return (
-    <section id='portfolio' className='py-32'>
-      <div className='w-full max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 xl:px-20'>
-        {/* Section Header */}
+    <section id='portfolio' className='plex-section'>
+      <div className='plex-container'>
         <motion.div
-          className='text-center mb-16'
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          className='max-w-2xl mb-16'
         >
-          <h2 className='text-4xl sm:text-5xl font-bold mb-4'>
+          <p className='plex-eyebrow mb-3'>Selected work</p>
+          <h2 className='text-4xl sm:text-5xl font-bold tracking-tight'>
             {portfolioData.title}{' '}
-            <span className='bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent'>
+            <span className='plex-display bg-gradient-to-r from-purple-300 via-fuchsia-300 to-violet-400 bg-clip-text text-transparent'>
               {portfolioData.highlight}
             </span>
           </h2>
-          <p className='text-xl text-foreground-muted max-w-2xl mx-auto'>
+          <p className='mt-4 text-lg text-foreground-muted'>
             {portfolioData.subtitle}
           </p>
         </motion.div>
 
-        {/* Portfolio Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              className='group relative bg-surface border border-white/5 rounded-2xl overflow-hidden hover:border-accent/50 transition-all duration-300'
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-            >
-              {/* Project Preview */}
-              <div
-                className={`relative h-64 bg-gradient-to-br ${project.gradient} flex items-center justify-center overflow-hidden`}
+        <div className='space-y-20 lg:space-y-28'>
+          {projects.map((project, index) => {
+            const reverse = index % 2 === 1;
+            return (
+              <motion.article
+                key={project.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                viewport={{ once: true, margin: '-80px' }}
+                className={`grid lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] gap-10 lg:gap-16 items-center ${
+                  reverse ? 'lg:[&>*:first-child]:order-2' : ''
+                }`}
               >
-                {project.image ? (
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className='object-cover object-top'
-                  />
-                ) : (
-                  <div className='text-6xl font-bold text-white/10'>
-                    {project.letter}
-                  </div>
-                )}
+                <a
+                  href={project.url ?? '#'}
+                  target={project.url ? '_blank' : undefined}
+                  rel='noopener noreferrer'
+                  className='group relative block aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 bg-surface shadow-2xl shadow-purple-900/20 hover:shadow-purple-600/30 transition-all duration-500 hover:-translate-y-1'
+                >
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className='object-cover object-top transition-transform duration-700 group-hover:scale-105'
+                    />
+                  ) : (
+                    <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} flex items-center justify-center`}>
+                      <span className='text-9xl font-bold text-white/10'>{project.letter}</span>
+                    </div>
+                  )}
+                  <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
+                  {project.url && (
+                    <div className='absolute top-4 right-4 inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300'>
+                      <ArrowUpRight className='w-5 h-5' />
+                    </div>
+                  )}
+                </a>
 
-                {/* Hover Overlay */}
-                <div className='absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center'>
-                  <div className='flex gap-4'>
-                    {project.url ? (
-                      <a
-                        href={project.url}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='px-8 py-1 bg-accent hover:bg-accent-hover text-white rounded-lg font-semibold transition-colors duration-300 flex items-center gap-2'
-                      >
-                        {portfolioData.viewProject}
-                        <ExternalLink className='w-4 h-4' />
-                      </a>
-                    ) : (
-                      <span className='px-8 py-1 bg-white/10 text-white/50 rounded-lg font-semibold flex items-center gap-2 cursor-not-allowed'>
-                        Coming Soon
-                      </span>
-                    )}
-                  </div>
+                <div>
+                  <p className='plex-eyebrow mb-3'>{project.category}</p>
+                  <h3 className='text-3xl sm:text-4xl font-bold tracking-tight'>
+                    {project.title}
+                  </h3>
+                  <p className='mt-4 text-base text-foreground-muted leading-relaxed'>
+                    {project.description}
+                  </p>
+                  {project.url && (
+                    <a
+                      href={project.url}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent hover:text-accent-hover transition-colors group'
+                    >
+                      <Globe className='w-4 h-4' />
+                      Visit live site
+                      <ArrowUpRight className='w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                    </a>
+                  )}
                 </div>
-              </div>
-
-              {/* Project Info */}
-              <div className='p-6'>
-                <div className='text-sm text-accent font-semibold mb-2'>
-                  {project.category}
-                </div>
-                <h3 className='text-2xl font-bold mb-2'>{project.title}</h3>
-                <p className='text-foreground-muted leading-relaxed'>
-                  {project.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+              </motion.article>
+            );
+          })}
         </div>
 
-        {/* Note about concept projects */}
-        <motion.div
-          className='text-center mt-12'
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <p className='text-sm text-foreground-muted italic'>
+        {portfolioData.note && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className='mt-16 text-center text-sm text-foreground-dim italic'
+          >
             {portfolioData.note}
-          </p>
-        </motion.div>
+          </motion.p>
+        )}
       </div>
     </section>
   );

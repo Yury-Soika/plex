@@ -7,63 +7,61 @@ import { getPricing } from '../utils/content';
 const Pricing = () => {
   const pricingData = getPricing();
   const packages = pricingData.packages;
+
   return (
-    <section id='pricing' className='py-32 bg-surface/50'>
-      <div className='w-full max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 xl:px-20'>
-        {/* Section Header */}
+    <section id='pricing' className='plex-section'>
+      <div className='plex-container'>
         <motion.div
-          className='text-center mb-16'
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          className='max-w-2xl mb-14'
         >
-          <h2 className='text-4xl sm:text-5xl font-bold mb-4'>
+          <p className='plex-eyebrow mb-3'>Pricing</p>
+          <h2 className='text-4xl sm:text-5xl font-bold tracking-tight'>
             {pricingData.title}{' '}
-            <span className='bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent'>
+            <span className='plex-display bg-gradient-to-r from-purple-300 via-fuchsia-300 to-violet-400 bg-clip-text text-transparent'>
               {pricingData.highlight}
             </span>
           </h2>
-          <p className='text-xl text-foreground-muted max-w-2xl mx-auto'>
+          <p className='mt-4 text-lg text-foreground-muted'>
             {pricingData.subtitle}
           </p>
         </motion.div>
 
-        {/* Pricing Cards */}
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
           {packages.map((pkg, index) => (
             <motion.div
               key={index}
-              className={`relative bg-background border rounded-2xl p-10 ${
-                pkg.highlighted
-                  ? 'border-accent shadow-2xl shadow-accent/20 md:scale-105'
-                  : 'border-white/5'
-              } hover:border-accent/50 transition-all duration-300`}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
+              className={`relative rounded-2xl border p-8 transition-all duration-300 ${
+                pkg.highlighted
+                  ? 'border-accent/50 bg-gradient-to-b from-purple-950/40 to-surface shadow-2xl shadow-purple-600/20'
+                  : 'border-white/10 bg-surface/40 hover:border-white/20'
+              }`}
             >
               {pkg.highlighted && (
-                <div className='absolute -top-4 left-1/2 transform -translate-x-1/2 bg-accent text-white px-4 py-1 rounded-full text-sm font-semibold'>
+                <span className='absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-purple-500 to-violet-500 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-lg shadow-purple-500/40'>
                   Most Popular
-                </div>
+                </span>
               )}
 
-              <div className='mb-6'>
-                <h3 className='text-2xl font-bold mb-2'>{pkg.name}</h3>
-                <div className='text-3xl font-bold text-accent mb-2'>
-                  {pkg.price}
-                </div>
-                <p className='text-sm text-foreground-muted'>
-                  {pkg.description}
-                </p>
+              <h3 className='text-xl font-semibold mb-2'>{pkg.name}</h3>
+              <div className='plex-display text-3xl text-accent mb-3'>
+                {pkg.price}
               </div>
+              <p className='text-sm text-foreground-muted mb-6 min-h-[40px]'>
+                {pkg.description}
+              </p>
 
-              <ul className='space-y-4 mb-8'>
+              <ul className='space-y-3 mb-8'>
                 {pkg.features.map((feature, idx) => (
-                  <li key={idx} className='flex items-start gap-3'>
-                    <Check className='w-5 h-5 text-accent flex-shrink-0 mt-0.5' />
+                  <li key={idx} className='flex items-start gap-2.5 text-sm'>
+                    <Check className='w-4 h-4 text-accent flex-shrink-0 mt-0.5' />
                     <span className='text-foreground-muted'>{feature}</span>
                   </li>
                 ))}
@@ -71,14 +69,12 @@ const Pricing = () => {
 
               <button
                 onClick={() =>
-                  document
-                    .getElementById('contact')
-                    ?.scrollIntoView({ behavior: 'smooth' })
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
                 }
-                className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
+                className={`w-full rounded-full py-3 text-xs font-semibold uppercase tracking-[0.18em] transition-all ${
                   pkg.highlighted
-                    ? 'bg-accent hover:bg-accent-hover text-white'
-                    : 'bg-surface hover:bg-surface/80 text-white border border-white/10'
+                    ? 'bg-accent hover:bg-accent-hover text-white shadow-lg shadow-purple-500/30'
+                    : 'border border-white/15 bg-white/5 hover:bg-white/10 text-foreground'
                 }`}
               >
                 Get Started
@@ -87,21 +83,23 @@ const Pricing = () => {
           ))}
         </div>
 
-        {/* Additional Info */}
-        <motion.div
-          className='text-center mt-12'
+        <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
+          className='text-center mt-12 text-sm text-foreground-muted'
         >
-          <p className='text-foreground-muted'>
-            {pricingData.note}{' '}
-            <span className='text-accent font-semibold cursor-pointer hover:underline'>
-              {pricingData.customQuote}
-            </span>
-          </p>
-        </motion.div>
+          {pricingData.note}{' '}
+          <button
+            onClick={() =>
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+            }
+            className='text-accent font-semibold hover:text-accent-hover hover:underline transition-colors'
+          >
+            {pricingData.customQuote}
+          </button>
+        </motion.p>
       </div>
     </section>
   );

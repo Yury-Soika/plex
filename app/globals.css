@@ -1,23 +1,31 @@
 @import 'tailwindcss';
 
 :root {
-  /* Dark theme colors */
-  --background: #0a0a0a;
-  --surface: #1a1a1a;
-  --foreground: #ffffff;
-  --foreground-muted: #a0a0a0;
-  --accent: #8b5cf6;
-  --accent-hover: #7c3aed;
+  --background: #0a0a0f;
+  --surface: #14141d;
+  --surface-2: #1c1c2a;
+  --border-color: #2a2a3d;
+  --foreground: #f4f4ff;
+  --foreground-muted: #a0a0b8;
+  --foreground-dim: #6b6b85;
+  --accent: #a855f7;
+  --accent-hover: #c084fc;
+  --accent-soft: #7c3aed;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border-c: var(--border-color);
   --color-foreground: var(--foreground);
   --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-dim: var(--foreground-dim);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-inter);
+  --font-display: var(--font-display);
 }
 
 html {
@@ -28,15 +36,56 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
+    'Roboto', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   min-width: 320px;
 }
 
-/* Custom scrollbar */
+.plex-display {
+  font-family: var(--font-display), Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.plex-container {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .plex-container { padding: 0 2rem; }
+}
+
+@media (min-width: 1024px) {
+  .plex-container { padding: 0 2.5rem; }
+}
+
+.plex-section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .plex-section { padding-top: 6rem; padding-bottom: 6rem; }
+}
+
+@media (min-width: 1024px) {
+  .plex-section { padding-top: 7rem; padding-bottom: 7rem; }
+}
+
+.plex-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -46,10 +95,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--surface);
+  background: var(--border-color);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a2a2a;
+  background: var(--accent);
 }

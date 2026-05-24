@@ -17,81 +17,58 @@ const Process = () => {
   const steps = processData.steps.map((step) => ({
     ...step,
     icon: iconMap[step.step as keyof typeof iconMap] || Search,
-    number: step.step,
   }));
+
   return (
-    <section id='process' className='py-32'>
-      <div className='w-full max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 xl:px-20'>
-        {/* Section Header */}
+    <section id='process' className='plex-section bg-surface/30 border-y border-white/5'>
+      <div className='plex-container'>
         <motion.div
-          className='text-center mb-16'
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          className='max-w-2xl mb-14'
         >
-          <h2 className='text-4xl sm:text-5xl font-bold mb-4'>
+          <p className='plex-eyebrow mb-3'>How we work</p>
+          <h2 className='text-4xl sm:text-5xl font-bold tracking-tight'>
             {processData.title}{' '}
-            <span className='bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent'>
+            <span className='plex-display bg-gradient-to-r from-purple-300 via-fuchsia-300 to-violet-400 bg-clip-text text-transparent'>
               {processData.highlight}
             </span>
           </h2>
-          <p className='text-xl text-foreground-muted max-w-2xl mx-auto'>
+          <p className='mt-4 text-lg text-foreground-muted'>
             {processData.subtitle}
           </p>
         </motion.div>
 
-        {/* Process Steps */}
         <div className='relative'>
-          {/* Connecting Line */}
-          <div className='hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500/50 to-blue-500/50 transform -translate-x-1/2' />
+          <div className='hidden lg:block absolute top-7 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent' />
 
-          <div className='space-y-12'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8'>
             {steps.map((step, index) => {
               const Icon = step.icon;
-              const isEven = index % 2 === 0;
-
               return (
                 <motion.div
                   key={index}
-                  className={`relative flex flex-col lg:flex-row items-center gap-8 ${
-                    isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                  }`}
-                  initial={{ opacity: 0, x: isEven ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
+                  className='relative'
                 >
-                  {/* Content */}
-                  <div
-                    className={`flex-1 ${
-                      isEven ? 'lg:text-right' : 'lg:text-left'
-                    }`}
-                  >
-                    <div className='bg-surface border border-white/5 rounded-2xl p-10 hover:border-accent/50 transition-colors duration-300'>
-                      <div className='flex items-center gap-4 mb-4 lg:hidden'>
-                        <div className='w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center'>
-                          <Icon className='w-8 h-8 text-accent' />
-                        </div>
-                        <div className='text-5xl font-bold text-accent/20'>
-                          {step.number}
-                        </div>
-                      </div>
-
-                      <h3 className='text-2xl font-bold mb-3'>{step.title}</h3>
-                      <p className='text-foreground-muted leading-relaxed'>
-                        {step.description}
-                      </p>
-                    </div>
+                  <div className='relative z-10 flex items-center justify-center w-14 h-14 mx-auto mb-5 rounded-full border border-accent/40 bg-background shadow-lg shadow-purple-900/30'>
+                    <Icon className='w-5 h-5 text-accent' />
                   </div>
 
-                  {/* Icon Circle (Desktop) */}
-                  <div className='hidden lg:flex relative z-10 w-20 h-20 bg-background border-4 border-accent rounded-full items-center justify-center'>
-                    <Icon className='w-8 h-8 text-accent' />
+                  <div className='text-center'>
+                    <p className='text-[10px] font-semibold uppercase tracking-[0.22em] text-accent mb-2'>
+                      Step {step.step}
+                    </p>
+                    <h3 className='text-lg font-semibold mb-3'>{step.title}</h3>
+                    <p className='text-sm text-foreground-muted leading-relaxed'>
+                      {step.description}
+                    </p>
                   </div>
-
-                  {/* Spacer */}
-                  <div className='hidden lg:block flex-1' />
                 </motion.div>
               );
             })}
