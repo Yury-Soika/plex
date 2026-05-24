@@ -80,7 +80,7 @@
     "highlight": "Work",
     "subtitle": "Crafted with precision and passion",
     "viewProject": "View Project",
-    "note": "* Concept projects showcasing our capabilities and design approach",
+    "note": "",
     "projects": [
       {
         "title": "Velvet Lounge",
@@ -101,18 +101,13 @@
         "image": "/preview-nightfall-terrace.png"
       },
       {
-        "title": "EventHub Pro",
-        "category": "SaaS Dashboard",
-        "description": "Event management platform with analytics, ticket sales, and customer relationship management.",
-        "gradient": "from-green-500/20 to-emerald-500/20",
-        "letter": "E"
-      },
-      {
-        "title": "Noir Club",
-        "category": "Mobile App",
-        "description": "Cross-platform mobile app for club-goers. Event discovery, ticket purchases, and social features.",
-        "gradient": "from-orange-500/20 to-red-500/20",
-        "letter": "N"
+        "title": "Venue",
+        "category": "SaaS Management Platform",
+        "description": "Full-stack nightlife venue management platform — bookings, events, guest CRM, floor plan, staff, and analytics. Built with Next.js & NestJS.",
+        "gradient": "from-violet-500/20 to-blue-500/20",
+        "letter": "V",
+        "url": "https://venue.plex.ee",
+        "image": "/preview-venue.png"
       }
     ]
   },
@@ -124,7 +119,7 @@
       { "name": "Next.js", "category": "Frontend" },
       { "name": "React", "category": "Frontend" },
       { "name": "TypeScript", "category": "Language" },
-      { "name": "Node.js", "category": "Backend" },
+      { "name": "NestJS", "category": "Backend" },
       { "name": "PostgreSQL", "category": "Database" },
       { "name": "Tailwind CSS", "category": "Styling" },
       { "name": "React Native", "category": "Mobile" }
@@ -177,54 +172,54 @@
   "pricing": {
     "title": "Transparent",
     "highlight": "Pricing",
-    "subtitle": "Choose the package that fits your needs",
+    "subtitle": "Custom-built with Next.js & NestJS — no templates, no shortcuts",
     "packages": [
       {
-        "name": "Starter",
-        "price": "$2,500 - $4,500",
-        "description": "Perfect for marketing websites and landing pages",
+        "name": "Landing Page",
+        "price": "$1,500 – $3,000",
+        "description": "A high-performance custom landing page built to convert",
         "features": [
-          "Up to 5 pages",
-          "Mobile responsive design",
-          "Basic SEO optimization",
-          "Contact forms",
-          "Content management system",
-          "1 month support",
-          "Google Analytics setup"
+          "Custom Next.js development",
+          "Up to 5 sections / pages",
+          "Mobile-first responsive design",
+          "SEO optimization & meta setup",
+          "Contact form with email integration",
+          "Google Analytics & performance tracking",
+          "Deployment & hosting setup"
         ],
         "highlighted": false
       },
       {
-        "name": "Professional",
-        "price": "$6,500 - $12,000",
-        "description": "Full-featured websites with custom functionality",
+        "name": "Full Website",
+        "price": "$5,000 – $10,000",
+        "description": "Full-stack Next.js + NestJS website with custom features",
         "features": [
-          "Unlimited pages",
-          "Custom design & branding",
-          "Advanced SEO & performance",
-          "Booking/reservation system",
+          "Custom Next.js frontend",
+          "NestJS REST API backend",
+          "Booking & reservation system",
+          "PostgreSQL database integration",
           "Admin dashboard",
-          "Database integration",
-          "Payment processing (Stripe/PayPal)",
-          "3 months support & maintenance",
-          "SSL certificate & hosting setup"
+          "Payment processing (Stripe)",
+          "Authentication & user management",
+          "Advanced SEO & performance",
+          "2 months support & maintenance"
         ],
         "highlighted": true
       },
       {
-        "name": "Enterprise",
-        "price": "$15,000 - $35,000",
-        "description": "Custom applications and comprehensive solutions",
+        "name": "Web App / Platform",
+        "price": "$15,000 – $30,000",
+        "description": "Scalable SaaS platform or custom web application",
         "features": [
-          "Custom SaaS/web application",
-          "Mobile app (iOS & Android)",
-          "Advanced integrations (APIs)",
-          "User management & authentication",
+          "Full SaaS architecture",
+          "Next.js frontend + NestJS backend",
+          "Real-time features & WebSockets",
+          "Role-based authentication & permissions",
+          "Custom API development & integrations",
           "Analytics & reporting dashboard",
-          "Custom API development",
-          "6 months support & maintenance",
-          "Priority support & updates",
-          "Performance optimization"
+          "Scalable cloud infrastructure",
+          "Mobile-ready (React Native)",
+          "6 months support & maintenance"
         ],
         "highlighted": false
       }
