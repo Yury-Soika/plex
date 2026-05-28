@@ -21,6 +21,11 @@ export type Project = {
   letter: string;
   url?: string;
   image?: string;
+  galleryImages?: {
+    src: string;
+    alt: string;
+  }[];
+  apkUrl?: string;
 };
 
 export type TechItem = {

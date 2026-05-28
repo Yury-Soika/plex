@@ -92,7 +92,7 @@ const Hero = () => {
             >
               <span className='flex items-center gap-2'>
                 <span className='h-1.5 w-1.5 rounded-full bg-emerald-400' />
-                3 live products
+                4 live products
               </span>
               <span className='flex items-center gap-2'>
                 <span className='h-1.5 w-1.5 rounded-full bg-purple-400' />

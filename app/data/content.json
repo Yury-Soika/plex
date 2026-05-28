@@ -266,7 +266,7 @@
         "highlighted": false
       }
     ],
-    "note": "Ranges are designed for small venue budgets and lean agency delivery. Final quotes depend on scope, integrations, content, compliance, and launch requirements. Mobile apps require separate App Store developer accounts.",
+    "note": "All packages include project management, testing, and deployment. Final quotes depend on scope and integrations. Mobile apps require separate App Store developer accounts.",
     "customQuote": "Need a custom quote?"
   },
   "about": {
@@ -291,9 +291,17 @@
     },
     "stats": [
       { "icon": "users", "label": "Live products", "value": "4" },
-      { "icon": "clock", "label": "Built with", "value": "Next.js + React Native" },
+      {
+        "icon": "clock",
+        "label": "Core stack",
+        "value": "React · Next.js · NestJS · React Native"
+      },
       { "icon": "award", "label": "Code quality", "value": "Enterprise-grade" },
-      { "icon": "trending-up", "label": "Focus", "value": "Nightlife & hospitality" }
+      {
+        "icon": "trending-up",
+        "label": "Focus",
+        "value": "Nightlife & hospitality"
+      }
     ]
   },
   "contact": {
