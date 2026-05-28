@@ -51,9 +51,14 @@ const Pricing = () => {
               )}
 
               <h3 className='text-xl font-semibold mb-2'>{pkg.name}</h3>
-              <div className='plex-display text-3xl text-accent mb-3'>
+              <div className='plex-display text-3xl text-accent mb-1'>
                 {pkg.price}
               </div>
+              {pkg.timeline && (
+                <p className='text-[11px] uppercase tracking-[0.16em] text-foreground-dim mb-3'>
+                  {pkg.timeline}
+                </p>
+              )}
               <p className='text-sm text-foreground-muted mb-6 min-h-[40px]'>
                 {pkg.description}
               </p>

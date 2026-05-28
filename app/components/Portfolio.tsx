@@ -174,6 +174,11 @@ const Portfolio = () => {
                   <h3 className='text-3xl sm:text-4xl font-bold tracking-tight'>
                     {project.title}
                   </h3>
+                  {project.tag && (
+                    <span className='inline-flex items-center gap-1.5 mt-3 px-2.5 py-1 rounded-full border border-accent/30 bg-accent/10 text-[10px] font-semibold uppercase tracking-[0.16em] text-accent'>
+                      {project.tag}
+                    </span>
+                  )}
                   <p className='mt-4 text-base text-foreground-muted leading-relaxed'>
                     {project.description}
                   </p>

@@ -16,6 +16,7 @@ export type ServiceItem = {
 export type Project = {
   title: string;
   category: string;
+  tag?: string;
   description: string;
   gradient: string;
   letter: string;
@@ -42,6 +43,7 @@ export type ProcessStep = {
 export type PricingPackage = {
   name: string;
   price: string;
+  timeline?: string;
   description: string;
   features: string[];
   highlighted: boolean;

@@ -1,8 +1,8 @@
 {
   "site": {
     "name": "Plex",
-    "tagline": "Premium Digital Agency for Nightlife, Hospitality & Mobile",
-    "description": "We build stunning web applications, booking systems, mobile apps, and digital experiences for nightlife and entertainment venues. Modern tech stack, enterprise-grade solutions."
+    "tagline": "Digital Studio for Nightlife & Hospitality",
+    "description": "Websites, booking systems, and mobile apps for nightclubs, restaurants, and hospitality venues. Built with Next.js, NestJS, and React Native."
   },
   "navigation": {
     "links": [
@@ -16,18 +16,18 @@
   },
   "hero": {
     "title": "Plex",
-    "headline": "We Build Premium Digital",
-    "highlight": "Experiences",
-    "subheadline": "For nightlife & entertainment venues. Transform your online presence with web platforms and mobile apps that drive bookings, operations, and revenue.",
+    "headline": "Websites, booking systems, and apps",
+    "highlight": "for venues that care.",
+    "subheadline": "We build the front-of-house and back-of-house digital tools that nightclubs, restaurants, and hospitality venues actually use — without templates, without compromise.",
     "cta": {
-      "primary": "Get Started",
-      "secondary": "View Our Work"
+      "primary": "Start a Project",
+      "secondary": "See Our Work"
     }
   },
   "services": {
     "title": "What We",
     "highlight": "Build",
-    "subtitle": "End-to-end digital solutions tailored for your business",
+    "subtitle": "Four kinds of products, all custom-built for hospitality venues.",
     "items": [
       {
         "title": "Landing Pages & Websites",
@@ -76,16 +76,17 @@
     ]
   },
   "portfolio": {
-    "title": "Our",
+    "title": "Selected",
     "highlight": "Work",
-    "subtitle": "Crafted with precision and passion",
+    "subtitle": "A growing showcase of production-grade concept projects — built to demonstrate exactly what we deliver for clients. Every line of code, every pixel, every interaction is real and shipping.",
     "viewProject": "View Project",
-    "note": "",
+    "note": "Your project gets the same standard. Concept work today, your venue tomorrow.",
     "projects": [
       {
         "title": "Velvet Lounge",
         "category": "Nightclub Website",
-        "description": "Luxury nightclub website with VIP booking, event calendar, and photo gallery. Modern design with smooth animations.",
+        "tag": "Concept · Live Demo",
+        "description": "A luxury nightclub website concept with VIP booking, event calendar, immersive photo gallery, and rich motion design. Built end-to-end with Next.js and Tailwind.",
         "gradient": "from-purple-500/20 to-pink-500/20",
         "letter": "V",
         "url": "https://velvet.plex.ee",
@@ -94,7 +95,8 @@
       {
         "title": "Nightfall Terrace",
         "category": "Booking Platform",
-        "description": "Complete table reservation system with real-time availability, interactive booking flow, and a full admin dashboard.",
+        "tag": "Concept · Live Demo",
+        "description": "A complete table reservation system: real-time availability, multi-step booking flow, blackout dates, and a full admin dashboard. Next.js front-end, NestJS API, PostgreSQL.",
         "gradient": "from-blue-500/20 to-cyan-500/20",
         "letter": "N",
         "url": "https://nightfall.plex.ee",
@@ -103,7 +105,8 @@
       {
         "title": "Venue",
         "category": "SaaS Management Platform",
-        "description": "Full-stack nightlife venue management platform — bookings, events, guest CRM, floor plan, staff, and analytics. Built with Next.js & NestJS.",
+        "tag": "Concept · Live Demo",
+        "description": "A full operations platform for nightlife venues — bookings, events, guest CRM with VIP tiers, floor plan, staff, and analytics. CASL-based role permissions, JWT auth, demo-mode for read-only access.",
         "gradient": "from-violet-500/20 to-blue-500/20",
         "letter": "V",
         "url": "https://venue.plex.ee",
@@ -112,7 +115,8 @@
       {
         "title": "Venue Mobile",
         "category": "React Native · Android",
-        "description": "Staff companion app for the Venue platform. Live dashboard metrics, booking management, guest CRM with VIP tiers, and role-based access — all optimized for on-the-floor mobile use.",
+        "tag": "Concept · APK Available",
+        "description": "Staff companion app for the Venue platform. Live dashboard metrics, booking management, guest CRM with VIP tiers, role-based access — all optimized for on-the-floor mobile use.",
         "gradient": "from-indigo-500/20 to-fuchsia-500/20",
         "letter": "V",
         "image": "/preview-venue-mobile-tonight-framed.png",
@@ -141,7 +145,7 @@
   "techStack": {
     "title": "Our Tech",
     "highlight": "Stack",
-    "subtitle": "Modern technologies for exceptional results",
+    "subtitle": "The tools we reach for on every project. Battle-tested, performant, and a joy to work with.",
     "technologies": [
       { "name": "Next.js", "category": "Frontend" },
       { "name": "React", "category": "Frontend" },
@@ -170,144 +174,147 @@
     ]
   },
   "process": {
-    "title": "Our",
-    "highlight": "Process",
-    "subtitle": "How we bring your vision to life",
+    "title": "How We",
+    "highlight": "Work",
+    "subtitle": "Four steps from first call to launch. Fixed price, fixed timeline, no scope-creep surprises.",
     "steps": [
       {
         "step": "01",
-        "title": "Discovery & Strategy",
-        "description": "We dive deep into your business goals, target audience, and technical requirements to create a roadmap for success."
+        "title": "Discovery Call",
+        "description": "A free 30-minute call to understand your venue, your goals, and the exact problem you want solved. You leave with a clear scope and a fixed-price quote."
       },
       {
         "step": "02",
-        "title": "Design & Prototyping",
-        "description": "Our team creates stunning designs and interactive prototypes that align with your brand and user expectations."
+        "title": "Design & Prototype",
+        "description": "We design the key screens in Figma, walk you through them, and iterate until you're sure. You approve before any production code is written."
       },
       {
         "step": "03",
-        "title": "Development & Testing",
-        "description": "Clean, efficient code development with rigorous testing to ensure your application performs flawlessly."
+        "title": "Build & Review",
+        "description": "We build in weekly sprints with a staging URL you can check anytime. You see progress every Friday, not in a big-bang at the end."
       },
       {
         "step": "04",
-        "title": "Launch & Support",
-        "description": "Smooth deployment, team training, and ongoing maintenance. We're here to help your business thrive."
+        "title": "Launch & Handoff",
+        "description": "Deploy to production, hand over the source code and credentials, walk your team through anything they need. Support window starts here."
       }
     ]
   },
   "pricing": {
     "title": "Transparent",
     "highlight": "Pricing",
-    "subtitle": "Custom-built web, mobile, and full-stack products — no templates, no shortcuts",
+    "subtitle": "Clear starting points for the four kinds of projects we build most.",
     "packages": [
       {
         "name": "Landing Page",
-        "price": "$1,500 – $3,500",
-        "description": "A high-performance custom landing page built to convert",
+        "price": "from $2,000",
+        "timeline": "2–3 weeks",
+        "description": "A polished, fast-loading site for a venue, event, or single product",
         "features": [
-          "Custom Next.js development",
-          "Up to 5 sections / pages",
+          "Custom Next.js + Tailwind build",
+          "Up to 5 sections or pages",
           "Mobile-first responsive design",
-          "SEO optimization & meta setup",
-          "Contact form with email integration",
-          "Google Analytics & performance tracking",
-          "Deployment & hosting setup"
+          "SEO + meta + Open Graph setup",
+          "Contact form with email delivery",
+          "Analytics integration",
+          "Domain + hosting setup"
         ],
         "highlighted": false
       },
       {
         "name": "Full Website",
-        "price": "$4,500 – $9,000",
-        "description": "Custom Next.js website with booking, content, or operational features",
+        "price": "from $5,500",
+        "timeline": "5–8 weeks",
+        "description": "Marketing site + booking system + admin dashboard, all custom",
         "features": [
-          "Custom Next.js frontend",
-          "NestJS REST API backend",
+          "Next.js front-end + NestJS API",
           "Booking & reservation system",
-          "PostgreSQL database integration",
+          "PostgreSQL database",
           "Admin dashboard",
+          "Authentication & user roles",
           "Payment processing (Stripe)",
-          "Authentication & user management",
-          "Advanced SEO & performance",
-          "2 months support & maintenance"
+          "SEO + performance tuning",
+          "2 months post-launch support"
         ],
         "highlighted": true
       },
       {
         "name": "Mobile App",
-        "price": "$8,000 – $18,000",
-        "description": "Production React Native app for iOS & Android, connected to your backend",
+        "price": "from $9,500",
+        "timeline": "8–12 weeks",
+        "description": "Production React Native app for iOS & Android",
         "features": [
-          "React Native (iOS & Android)",
-          "Custom UI matching your brand",
-          "REST API integration or new backend",
+          "React Native (iOS + Android)",
+          "Brand-matched custom UI",
+          "REST API integration",
           "Push notifications",
-          "Authentication & role-based access",
+          "Auth + role-based access",
           "Offline support",
-          "App Store & Play Store submission",
-          "3 months support & maintenance"
+          "App Store + Play Store submission",
+          "3 months post-launch support"
         ],
         "highlighted": false
       },
       {
-        "name": "Web App / Platform",
-        "price": "$18,000 – $35,000",
-        "description": "Scalable SaaS or operations platform with web and mobile coverage",
+        "name": "Full Platform",
+        "price": "from $20,000",
+        "timeline": "12–20 weeks",
+        "description": "Web + mobile + backend — a full operations product like our Venue concept",
         "features": [
           "Full SaaS architecture",
-          "Next.js frontend + NestJS backend",
-          "React Native mobile companion app",
-          "Real-time features & WebSockets",
-          "Role-based authentication & permissions",
-          "Analytics & reporting dashboard",
+          "Next.js web + React Native mobile",
+          "NestJS backend + PostgreSQL",
+          "Role-based permissions (CASL)",
+          "Real-time updates",
+          "Analytics dashboards",
           "Scalable cloud infrastructure",
-          "6 months support & maintenance"
+          "6 months post-launch support"
         ],
         "highlighted": false
       }
     ],
-    "note": "All packages include project management, testing, and deployment. Final quotes depend on scope and integrations. Mobile apps require separate App Store developer accounts.",
-    "customQuote": "Need a custom quote?"
+    "note": "Every project starts with a free discovery call to scope properly and give you a firm fixed-price quote. Ranges shown are typical — final price depends on scope, integrations, and content.",
+    "customQuote": "Need something different?"
   },
   "about": {
     "title": "About",
     "highlight": "Plex",
     "content": {
-      "mission": "We specialize in creating digital experiences that drive results for nightlife and entertainment venues. Our modern tech stack and industry expertise ensure your online presence stands out.",
+      "mission": "Plex is a small digital studio focused exclusively on nightlife and hospitality. We build the websites, booking systems, and mobile apps that venues actually need — not templates, not marketing fluff. Our concept projects show exactly what we can ship; your project gets the same level of care.",
       "values": [
         {
-          "title": "Quality First",
-          "description": "Every project is built with enterprise-grade standards and attention to detail."
+          "title": "Hospitality-only",
+          "description": "We don't take dental clinics or crypto landing pages. Every project we ship is for clubs, bars, restaurants, or hospitality venues."
         },
         {
-          "title": "Industry Focus",
-          "description": "We understand the unique needs of nightlife and entertainment businesses."
+          "title": "Custom-built",
+          "description": "No themes, no page builders. Every product is hand-written Next.js, NestJS, and React Native — designed and coded for your venue specifically."
         },
         {
-          "title": "Modern Technology",
-          "description": "Using the latest tools and frameworks for optimal performance and scalability."
+          "title": "Owned by you",
+          "description": "You get the full source code, the database, the deploy keys. No vendor lock-in, no monthly SaaS fees, no surprises."
         }
       ]
     },
     "stats": [
-      { "icon": "users", "label": "Live products", "value": "4" },
+      { "icon": "users", "label": "Specialization", "value": "Nightlife & Hospitality" },
       {
         "icon": "clock",
         "label": "Core stack",
-        "value": "React · Next.js · NestJS · React Native"
+        "value": "Next.js · NestJS · React Native"
       },
-      { "icon": "award", "label": "Code quality", "value": "Enterprise-grade" },
+      { "icon": "award", "label": "Concept projects", "value": "4 shipped" },
       {
         "icon": "trending-up",
-        "label": "Focus",
-        "value": "Nightlife & hospitality"
+        "label": "Engagement",
+        "value": "Fixed-price · No retainer"
       }
     ]
   },
   "contact": {
-    "title": "Get In",
-    "highlight": "Touch",
-    "subtitle": "Ready to transform your digital presence? Let's talk.",
+    "title": "Start a",
+    "highlight": "Project",
+    "subtitle": "Tell us about your venue and what you're trying to build. We respond within 24 hours with a free discovery call.",
     "form": {
       "name": "Full Name",
       "email": "Email Address",
@@ -328,7 +335,7 @@
     }
   },
   "footer": {
-    "description": "Building premium digital experiences for nightlife and entertainment venues. Modern technology, exceptional results.",
+    "description": "A focused digital studio building websites, booking systems, and mobile apps for nightlife and hospitality venues.",
     "quickLinksTitle": "Quick Links",
     "contactTitle": "Get in Touch",
     "email": "contact@plex.ee",
