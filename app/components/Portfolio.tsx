@@ -1,13 +1,69 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Globe, Download, Apple } from 'lucide-react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { ArrowUpRight, Globe, Download, Apple, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import Image from 'next/image';
 import { getPortfolio } from '../utils/content';
 
 const Portfolio = () => {
   const portfolioData = getPortfolio();
   const projects = portfolioData.projects;
+  const [lightboxProject, setLightboxProject] = useState<string | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  const lightboxImages = useMemo(() => {
+    if (!lightboxProject) return [];
+
+    const project = projects.find((item) => item.title === lightboxProject);
+    if (!project) return [];
+
+    const images = project.image
+      ? [{ src: project.image, alt: `${project.title} main preview` }]
+      : [];
+
+    return [...images, ...(project.galleryImages ?? [])];
+  }, [lightboxProject, projects]);
+
+  const closeLightbox = useCallback(() => {
+    setLightboxProject(null);
+    setLightboxIndex(0);
+  }, []);
+
+  const showPreviousImage = useCallback(() => {
+    setLightboxIndex((current) => (
+      current === 0 ? lightboxImages.length - 1 : current - 1
+    ));
+  }, [lightboxImages.length]);
+
+  const showNextImage = useCallback(() => {
+    setLightboxIndex((current) => (
+      current === lightboxImages.length - 1 ? 0 : current + 1
+    ));
+  }, [lightboxImages.length]);
+
+  const openGallery = (projectTitle: string, imageIndex: number) => {
+    setLightboxProject(projectTitle);
+    setLightboxIndex(imageIndex);
+  };
+
+  useEffect(() => {
+    if (!lightboxProject) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowLeft') showPreviousImage();
+      if (event.key === 'ArrowRight') showNextImage();
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [closeLightbox, lightboxProject, showNextImage, showPreviousImage]);
 
   return (
     <section id='portfolio' className='plex-section'>
@@ -34,6 +90,21 @@ const Portfolio = () => {
         <div className='space-y-20 lg:space-y-28'>
           {projects.map((project, index) => {
             const reverse = index % 2 === 1;
+            const hasGallery = Boolean(project.galleryImages?.length);
+            const previewClassName = 'group relative block aspect-[16/10] w-full rounded-2xl overflow-hidden border border-white/10 bg-surface shadow-2xl shadow-purple-900/20 hover:shadow-purple-600/30 transition-all duration-500 hover:-translate-y-1';
+            const previewImage = project.image ? (
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className={`${project.apkUrl ? 'object-contain object-center p-3 sm:p-4' : 'object-cover object-top'} transition-transform duration-700 group-hover:scale-105`}
+              />
+            ) : (
+              <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} flex items-center justify-center`}>
+                <span className='text-9xl font-bold text-white/10'>{project.letter}</span>
+              </div>
+            );
+
             return (
               <motion.article
                 key={project.title}
@@ -45,31 +116,58 @@ const Portfolio = () => {
                   reverse ? 'lg:[&>*:first-child]:order-2' : ''
                 }`}
               >
-                <a
-                  href={project.url ?? '#'}
-                  target={project.url ? '_blank' : undefined}
-                  rel='noopener noreferrer'
-                  className='group relative block aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 bg-surface shadow-2xl shadow-purple-900/20 hover:shadow-purple-600/30 transition-all duration-500 hover:-translate-y-1'
-                >
-                  {project.image ? (
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className={`transition-transform duration-700 group-hover:scale-105 ${project.apkUrl ? 'object-contain object-center p-4' : 'object-cover object-top'}`}
-                    />
+                <div>
+                  {hasGallery ? (
+                    <button
+                      type='button'
+                      onClick={() => openGallery(project.title, 0)}
+                      className={`${previewClassName} cursor-zoom-in`}
+                      aria-label={`Open ${project.title} screenshot gallery`}
+                    >
+                      {previewImage}
+                      <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
+                      <div className='absolute top-4 right-4 inline-flex items-center justify-center rounded-full bg-black/60 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300'>
+                        View gallery
+                      </div>
+                    </button>
                   ) : (
-                    <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} flex items-center justify-center`}>
-                      <span className='text-9xl font-bold text-white/10'>{project.letter}</span>
+                    <a
+                      href={project.url ?? '#'}
+                      target={project.url ? '_blank' : undefined}
+                      rel='noopener noreferrer'
+                      className={previewClassName}
+                    >
+                      {previewImage}
+                      <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
+                      {project.url && (
+                        <div className='absolute top-4 right-4 inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300'>
+                          <ArrowUpRight className='w-5 h-5' />
+                        </div>
+                      )}
+                    </a>
+                  )}
+
+                  {project.galleryImages && (
+                    <div className='mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3'>
+                      {project.galleryImages.map((image, imageIndex) => (
+                        <button
+                          type='button'
+                          key={image.src}
+                          onClick={() => openGallery(project.title, imageIndex + 1)}
+                          className='group/thumb relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10 bg-surface/70 transition-all hover:-translate-y-0.5 hover:border-accent/60 cursor-zoom-in'
+                          aria-label={`Open ${image.alt}`}
+                        >
+                          <Image
+                            src={image.src}
+                            alt={image.alt}
+                            fill
+                            className='object-contain object-center p-1.5 transition-transform duration-500 group-hover/thumb:scale-105'
+                          />
+                        </button>
+                      ))}
                     </div>
                   )}
-                  <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
-                  {project.url && (
-                    <div className='absolute top-4 right-4 inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300'>
-                      <ArrowUpRight className='w-5 h-5' />
-                    </div>
-                  )}
-                </a>
+                </div>
 
                 <div>
                   <p className='plex-eyebrow mb-3'>{project.category}</p>
@@ -111,6 +209,66 @@ const Portfolio = () => {
             );
           })}
         </div>
+
+        {lightboxImages.length > 0 && (
+          <div
+            className='fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4 py-6 backdrop-blur-md'
+            role='dialog'
+            aria-modal='true'
+            aria-label='Venue Mobile screenshot gallery'
+            onClick={closeLightbox}
+          >
+            <button
+              type='button'
+              onClick={closeLightbox}
+              className='absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-colors hover:bg-white/20'
+              aria-label='Close gallery'
+            >
+              <X className='h-5 w-5' />
+            </button>
+
+            <button
+              type='button'
+              onClick={(event) => {
+                event.stopPropagation();
+                showPreviousImage();
+              }}
+              className='absolute left-4 top-1/2 z-10 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-colors hover:bg-white/20'
+              aria-label='Previous screenshot'
+            >
+              <ChevronLeft className='h-6 w-6' />
+            </button>
+
+            <button
+              type='button'
+              onClick={(event) => {
+                event.stopPropagation();
+                showNextImage();
+              }}
+              className='absolute right-4 top-1/2 z-10 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-colors hover:bg-white/20'
+              aria-label='Next screenshot'
+            >
+              <ChevronRight className='h-6 w-6' />
+            </button>
+
+            <div
+              className='relative h-full max-h-[86vh] w-full max-w-6xl'
+              onClick={(event) => event.stopPropagation()}
+            >
+              <Image
+                src={lightboxImages[lightboxIndex].src}
+                alt={lightboxImages[lightboxIndex].alt}
+                fill
+                priority
+                className='object-contain'
+              />
+            </div>
+
+            <div className='absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full border border-white/10 bg-black/60 px-4 py-2 text-xs font-medium text-white/80'>
+              {lightboxIndex + 1} / {lightboxImages.length}
+            </div>
+          </div>
+        )}
 
         {portfolioData.note && (
           <motion.p

@@ -115,7 +115,25 @@
         "description": "Staff companion app for the Venue platform. Live dashboard metrics, booking management, guest CRM with VIP tiers, and role-based access — all optimized for on-the-floor mobile use.",
         "gradient": "from-indigo-500/20 to-fuchsia-500/20",
         "letter": "V",
-        "image": "/preview-venue-mobile-android-framed.png",
+        "image": "/preview-venue-mobile-tonight-framed.png",
+        "galleryImages": [
+          {
+            "src": "/preview-venue-mobile-bookings-framed.png",
+            "alt": "Venue Mobile bookings screen"
+          },
+          {
+            "src": "/preview-venue-mobile-events-framed.png",
+            "alt": "Venue Mobile events screen"
+          },
+          {
+            "src": "/preview-venue-mobile-guests-framed.png",
+            "alt": "Venue Mobile guests screen"
+          },
+          {
+            "src": "/preview-venue-mobile-profile-framed.png",
+            "alt": "Venue Mobile profile screen"
+          }
+        ],
         "apkUrl": "https://github.com/Yury-Soika/venue-mobile/releases/download/v1.0.0/app-release.apk"
       }
     ]
@@ -181,11 +199,11 @@
   "pricing": {
     "title": "Transparent",
     "highlight": "Pricing",
-    "subtitle": "Custom-built with Next.js & NestJS — no templates, no shortcuts",
+    "subtitle": "Custom-built web, mobile, and full-stack products — no templates, no shortcuts",
     "packages": [
       {
         "name": "Landing Page",
-        "price": "$1,500 – $3,000",
+        "price": "$1,500 – $3,500",
         "description": "A high-performance custom landing page built to convert",
         "features": [
           "Custom Next.js development",
@@ -200,8 +218,8 @@
       },
       {
         "name": "Full Website",
-        "price": "$5,000 – $10,000",
-        "description": "Full-stack Next.js + NestJS website with custom features",
+        "price": "$4,500 – $9,000",
+        "description": "Custom Next.js website with booking, content, or operational features",
         "features": [
           "Custom Next.js frontend",
           "NestJS REST API backend",
@@ -216,24 +234,39 @@
         "highlighted": true
       },
       {
+        "name": "Mobile App",
+        "price": "$8,000 – $18,000",
+        "description": "Production React Native app for iOS & Android, connected to your backend",
+        "features": [
+          "React Native (iOS & Android)",
+          "Custom UI matching your brand",
+          "REST API integration or new backend",
+          "Push notifications",
+          "Authentication & role-based access",
+          "Offline support",
+          "App Store & Play Store submission",
+          "3 months support & maintenance"
+        ],
+        "highlighted": false
+      },
+      {
         "name": "Web App / Platform",
-        "price": "$15,000 – $30,000",
-        "description": "Scalable SaaS platform or custom web application",
+        "price": "$18,000 – $35,000",
+        "description": "Scalable SaaS or operations platform with web and mobile coverage",
         "features": [
           "Full SaaS architecture",
           "Next.js frontend + NestJS backend",
+          "React Native mobile companion app",
           "Real-time features & WebSockets",
           "Role-based authentication & permissions",
-          "Custom API development & integrations",
           "Analytics & reporting dashboard",
           "Scalable cloud infrastructure",
-          "Mobile-ready (React Native)",
           "6 months support & maintenance"
         ],
         "highlighted": false
       }
     ],
-    "note": "All packages include project management, testing, and deployment.",
+    "note": "Ranges are designed for small venue budgets and lean agency delivery. Final quotes depend on scope, integrations, content, compliance, and launch requirements. Mobile apps require separate App Store developer accounts.",
     "customQuote": "Need a custom quote?"
   },
   "about": {
