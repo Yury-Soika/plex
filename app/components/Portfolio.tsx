@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Globe } from 'lucide-react';
+import { ArrowUpRight, Globe, Download, Apple } from 'lucide-react';
 import Image from 'next/image';
 import { getPortfolio } from '../utils/content';
 
@@ -56,7 +56,7 @@ const Portfolio = () => {
                       src={project.image}
                       alt={project.title}
                       fill
-                      className='object-cover object-top transition-transform duration-700 group-hover:scale-105'
+                      className={`transition-transform duration-700 group-hover:scale-105 ${project.apkUrl ? 'object-contain object-center p-4' : 'object-cover object-top'}`}
                     />
                   ) : (
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} flex items-center justify-center`}>
@@ -90,6 +90,21 @@ const Portfolio = () => {
                       Visit live site
                       <ArrowUpRight className='w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
                     </a>
+                  )}
+                  {project.apkUrl && (
+                    <div className='mt-6 flex flex-wrap items-center gap-3'>
+                      <a
+                        href={project.apkUrl}
+                        className='inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-white text-xs font-semibold uppercase tracking-[0.18em] transition-colors shadow-lg shadow-purple-500/25'
+                      >
+                        <Download className='w-3.5 h-3.5' />
+                        Download APK
+                      </a>
+                      <span className='inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-foreground-muted'>
+                        <Apple className='w-3.5 h-3.5' />
+                        iOS — Coming Soon
+                      </span>
+                    </div>
                   )}
                 </div>
               </motion.article>

@@ -1,8 +1,8 @@
 {
   "site": {
     "name": "Plex",
-    "tagline": "Premium Digital Agency for Nightlife & Entertainment",
-    "description": "We build stunning web applications, booking systems, and digital experiences for nightlife and entertainment venues. Modern tech stack, enterprise-grade solutions."
+    "tagline": "Premium Digital Agency for Nightlife, Hospitality & Mobile",
+    "description": "We build stunning web applications, booking systems, mobile apps, and digital experiences for nightlife and entertainment venues. Modern tech stack, enterprise-grade solutions."
   },
   "navigation": {
     "links": [
@@ -18,7 +18,7 @@
     "title": "Plex",
     "headline": "We Build Premium Digital",
     "highlight": "Experiences",
-    "subheadline": "For nightlife & entertainment venues. Transform your online presence with stunning web applications that drive bookings and revenue.",
+    "subheadline": "For nightlife & entertainment venues. Transform your online presence with web platforms and mobile apps that drive bookings, operations, and revenue.",
     "cta": {
       "primary": "Get Started",
       "secondary": "View Our Work"
@@ -108,6 +108,15 @@
         "letter": "V",
         "url": "https://venue.plex.ee",
         "image": "/preview-venue.png"
+      },
+      {
+        "title": "Venue Mobile",
+        "category": "React Native · Android",
+        "description": "Staff companion app for the Venue platform. Live dashboard metrics, booking management, guest CRM with VIP tiers, and role-based access — all optimized for on-the-floor mobile use.",
+        "gradient": "from-indigo-500/20 to-fuchsia-500/20",
+        "letter": "V",
+        "image": "/preview-venue-mobile-android-framed.png",
+        "apkUrl": "https://github.com/Yury-Soika/venue-mobile/releases/download/v1.0.0/app-release.apk"
       }
     ]
   },
@@ -248,8 +257,8 @@
       ]
     },
     "stats": [
-      { "icon": "users", "label": "Live products", "value": "3" },
-      { "icon": "clock", "label": "Built with", "value": "Next.js + NestJS" },
+      { "icon": "users", "label": "Live products", "value": "4" },
+      { "icon": "clock", "label": "Built with", "value": "Next.js + React Native" },
       { "icon": "award", "label": "Code quality", "value": "Enterprise-grade" },
       { "icon": "trending-up", "label": "Focus", "value": "Nightlife & hospitality" }
     ]
