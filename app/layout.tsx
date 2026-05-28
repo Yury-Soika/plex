@@ -43,11 +43,20 @@ export const metadata: Metadata = {
     title: getPageTitle(),
     description: site.description,
     locale: 'en_US',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Plex — Digital Studio for Nightlife & Hospitality',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: getPageTitle(),
     description: site.description,
+    images: ['/og-image.png'],
   },
   icons: {
     icon: '/icon.svg',
