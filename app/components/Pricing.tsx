@@ -46,7 +46,7 @@ const Pricing = () => {
             >
               {pkg.highlighted && (
                 <span className='absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-purple-500 to-violet-500 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-lg shadow-purple-500/40'>
-                  Most Popular
+                  Recommended
                 </span>
               )}
 

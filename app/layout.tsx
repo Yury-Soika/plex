@@ -17,18 +17,41 @@ const playfair = Playfair_Display({
   style: ['italic'],
 });
 
+const site = getSiteInfo();
+const SITE_URL = 'https://plex.ee';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: getPageTitle(),
-  description: getSiteInfo().description,
+  description: site.description,
   keywords: [
-    'web development',
-    'digital agency',
+    'digital studio',
     'nightlife',
-    'entertainment',
-    'web apps',
-    'SaaS',
+    'hospitality',
+    'restaurants',
+    'nightclubs',
     'booking systems',
+    'venue management',
+    'Next.js',
+    'React Native',
   ],
+  authors: [{ name: 'Plex', url: SITE_URL }],
+  openGraph: {
+    type: 'website',
+    url: SITE_URL,
+    siteName: 'Plex',
+    title: getPageTitle(),
+    description: site.description,
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: getPageTitle(),
+    description: site.description,
+  },
+  icons: {
+    icon: '/icon.svg',
+  },
 };
 
 const RootLayout = ({

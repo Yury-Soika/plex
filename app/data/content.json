@@ -158,18 +158,18 @@
     "benefits": [
       {
         "icon": "⚡",
-        "title": "Lightning Fast",
-        "description": "Optimized performance and blazing-fast load times for the best user experience"
+        "title": "Fast on day one",
+        "description": "Server-rendered Next.js, optimized images, and PostgreSQL out of the box. Your site loads in under a second on a phone — measured, not promised."
       },
       {
-        "icon": "🔒",
-        "title": "Secure & Scalable",
-        "description": "Built with security best practices and designed to scale with your growing business"
+        "icon": "🔑",
+        "title": "You own everything",
+        "description": "Source code on your GitHub. Database on your host. Deploy keys in your hands. No vendor lock-in, no monthly SaaS fees on top."
       },
       {
-        "icon": "🛠️",
-        "title": "Maintainable",
-        "description": "Clean, documented code that's easy to update and extend as your needs evolve"
+        "icon": "🧩",
+        "title": "Built to extend",
+        "description": "Modular architecture so the next feature isn't a rewrite. Add a payment provider, a new role, or a mobile app without touching the foundation."
       }
     ]
   },
