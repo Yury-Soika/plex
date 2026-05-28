@@ -39,7 +39,7 @@ const Hero = () => {
               className='inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-foreground-muted backdrop-blur-sm'
             >
               <span className='h-1.5 w-1.5 rounded-full bg-purple-400 animate-pulse' />
-              Premium agency · nightlife & entertainment
+              Digital studio · Nightlife & hospitality
             </motion.span>
 
             <motion.h1
@@ -92,11 +92,15 @@ const Hero = () => {
             >
               <span className='flex items-center gap-2'>
                 <span className='h-1.5 w-1.5 rounded-full bg-emerald-400' />
-                4 live products
+                4 concept projects live
               </span>
               <span className='flex items-center gap-2'>
                 <span className='h-1.5 w-1.5 rounded-full bg-purple-400' />
                 Next.js · NestJS · React Native
+              </span>
+              <span className='flex items-center gap-2'>
+                <span className='h-1.5 w-1.5 rounded-full bg-fuchsia-400' />
+                Hospitality-only
               </span>
             </motion.div>
           </motion.div>
@@ -139,7 +143,7 @@ const Hero = () => {
                       {project.title}
                     </span>
                     <span className='text-[10px] uppercase tracking-[0.2em] text-accent'>
-                      Live
+                      Demo
                     </span>
                   </div>
                 </motion.a>
