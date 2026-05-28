@@ -17,8 +17,8 @@
   "hero": {
     "title": "Plex",
     "headline": "Websites, booking systems, and apps",
-    "highlight": "for venues that care.",
-    "subheadline": "We build the front-of-house and back-of-house digital tools that nightclubs, restaurants, and hospitality venues actually use — without templates, without compromise.",
+    "highlight": "for venues that take guest experience seriously.",
+    "subheadline": "We build the front-of-house and back-of-house digital tools that nightclubs, restaurants, and hospitality venues actually use — designed and coded from scratch for your venue.",
     "cta": {
       "primary": "Start a Project",
       "secondary": "See Our Work"
@@ -30,46 +30,46 @@
     "subtitle": "Four kinds of products, all custom-built for hospitality venues.",
     "items": [
       {
-        "title": "Landing Pages & Websites",
-        "description": "High-converting websites that drive traffic and bookings",
+        "title": "Venue Websites",
+        "description": "Landing pages and full sites that turn visitors into bookings",
         "features": [
-          "Custom responsive design",
-          "SEO optimization",
-          "Fast loading speeds",
-          "Mobile-first approach"
+          "Event calendar & lineup",
+          "Photo & video gallery",
+          "Reservation CTA flows",
+          "Press / media kit pages"
         ],
         "icon": "code"
       },
       {
-        "title": "Web Applications & SaaS",
-        "description": "Custom web applications to streamline your business operations",
+        "title": "Table & Booking Systems",
+        "description": "Reservation flows your hosts and guests both actually enjoy",
         "features": [
-          "User authentication",
-          "Real-time data sync",
-          "Admin dashboards",
-          "API integrations"
-        ],
-        "icon": "zap"
-      },
-      {
-        "title": "Booking & Reservation Systems",
-        "description": "Seamless booking experiences for your customers",
-        "features": [
-          "Calendar integration",
-          "Payment processing",
-          "Email notifications",
-          "Availability management"
+          "Visual table layouts",
+          "Time slots & blackouts",
+          "Deposits & cover charges",
+          "Guest tier handling (VIP / regular)"
         ],
         "icon": "calendar"
       },
       {
-        "title": "Mobile Applications",
-        "description": "Native mobile apps for iOS and Android",
+        "title": "Operations Dashboards",
+        "description": "Back-of-house tools for managing the venue end-to-end",
         "features": [
-          "Cross-platform development",
-          "Push notifications",
-          "Offline functionality",
-          "App store deployment"
+          "Bookings, events & guest CRM",
+          "Staff scheduling & roles",
+          "Revenue & occupancy analytics",
+          "Role-based access (CASL)"
+        ],
+        "icon": "zap"
+      },
+      {
+        "title": "Staff Mobile Apps",
+        "description": "Native iOS & Android apps for on-the-floor venue teams",
+        "features": [
+          "React Native (iOS + Android)",
+          "Live booking confirmations",
+          "Push notifications for new bookings",
+          "Biometric login & offline support"
         ],
         "icon": "smartphone"
       }
@@ -303,7 +303,7 @@
         "label": "Core stack",
         "value": "Next.js · NestJS · React Native"
       },
-      { "icon": "award", "label": "Concept projects", "value": "4 shipped" },
+      { "icon": "award", "label": "Concept projects", "value": "4 built" },
       {
         "icon": "trending-up",
         "label": "Engagement",
