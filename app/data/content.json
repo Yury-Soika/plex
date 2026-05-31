@@ -336,6 +336,7 @@
   },
   "footer": {
     "description": "A focused digital studio building websites, booking systems, and mobile apps for nightlife and hospitality venues.",
+    "badge": "EU-registered studio · Serving venues worldwide",
     "quickLinksTitle": "Quick Links",
     "contactTitle": "Get in Touch",
     "email": "contact@plex.ee",
@@ -351,6 +352,9 @@
         { "name": "Privacy Policy", "href": "/privacy" },
         { "name": "Terms of Service", "href": "/terms" }
       ]
+    },
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/yury-soika/"
     },
     "copyright": "All rights reserved."
   }

@@ -54,7 +54,7 @@ const PrivacyPage = () => {
             <section>
               <h2 className='text-xl font-semibold text-foreground mb-3'>3. How We Use Your Information</h2>
               <p className='leading-relaxed'>
-                We use the information we collect to respond to your enquiries, provide and improve our services, send relevant updates (with your consent), analyse site usage, and comply with legal obligations. We do not sell your personal data to third parties.
+                We use the information we collect to respond to your inquiries, provide and improve our services, send relevant updates (with your consent), analyze site usage, and comply with legal obligations. We do not sell your personal data to third parties.
               </p>
             </section>
 
@@ -75,7 +75,7 @@ const PrivacyPage = () => {
             <section>
               <h2 className='text-xl font-semibold text-foreground mb-3'>6. Data Retention and Security</h2>
               <p className='leading-relaxed'>
-                We retain your information only for as long as necessary to fulfil the purposes described in this policy or as required by law. We implement appropriate technical and organisational measures to protect your data against unauthorised access, alteration, or loss.
+                We retain your information only for as long as necessary to fulfill the purposes described in this policy or as required by law. We implement appropriate technical and organizational measures to protect your data against unauthorized access, alteration, or loss.
               </p>
             </section>
 

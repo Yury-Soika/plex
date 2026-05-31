@@ -95,7 +95,7 @@ const TermsPage = () => {
                 you, as described in your proposal. We retain the right to reuse
                 general know-how, techniques, and non-client-specific components.
                 Third-party and open-source components remain subject to their
-                respective licences. Unless you opt out in writing, we may
+                respective licenses. Unless you opt out in writing, we may
                 reference completed work in our portfolio.
               </p>
             </section>

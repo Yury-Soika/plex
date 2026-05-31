@@ -16,7 +16,19 @@ const StructuredData = () => {
     image: `${SITE_URL}/og-image.png`,
     logo: `${SITE_URL}/icon.svg`,
     priceRange: '$$$',
-    areaServed: 'Worldwide',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'EE',
+    },
+    areaServed: [
+      { '@type': 'Country', name: 'United States' },
+      { '@type': 'Country', name: 'Worldwide' },
+    ],
+    founder: {
+      '@type': 'Person',
+      name: 'Yury Soika',
+      sameAs: 'https://www.linkedin.com/in/yury-soika/',
+    },
     knowsAbout: [
       'Web development',
       'Booking systems',

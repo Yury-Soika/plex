@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Linkedin } from 'lucide-react';
 import { getFooter, getSiteInfo } from '../utils/content';
 
 const Footer = () => {
@@ -24,6 +25,11 @@ const Footer = () => {
             <p className='text-sm text-foreground-muted leading-relaxed max-w-xs'>
               {footerData.description}
             </p>
+            {footerData.badge && (
+              <p className='mt-4 inline-flex items-center rounded-full border border-white/10 px-3 py-1 text-xs text-foreground-dim'>
+                {footerData.badge}
+              </p>
+            )}
           </div>
 
           <div>
@@ -65,6 +71,19 @@ const Footer = () => {
             >
               {footerData.email}
             </a>
+            {footerData.social?.linkedin && (
+              <div className='mt-4'>
+                <a
+                  href={footerData.social.linkedin}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label='Plex on LinkedIn'
+                  className='inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-foreground-muted transition-colors hover:border-accent hover:text-accent'
+                >
+                  <Linkedin className='h-4 w-4' />
+                </a>
+              </div>
+            )}
             <div className='mt-4 flex flex-wrap gap-3'>
               {footerData.links.legal.map((link) => (
                 <Link
