@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ArrowUpRight, Globe, Download, Apple, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { getPortfolio } from '../utils/content';
 
 const Portfolio = () => {
@@ -208,6 +209,15 @@ const Portfolio = () => {
                         iOS — Coming Soon
                       </span>
                     </div>
+                  )}
+                  {project.pageUrl && (
+                    <Link
+                      href={project.pageUrl}
+                      className='mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent hover:text-accent-hover transition-colors group'
+                    >
+                      View full details
+                      <ArrowUpRight className='w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                    </Link>
                   )}
                 </div>
               </motion.article>

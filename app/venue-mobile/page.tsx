@@ -54,10 +54,10 @@ const VenueMobilePage = () => {
     <main className='min-h-screen'>
       <Navbar />
 
-      <div className='plex-container pt-24 pb-20'>
+      <div className='plex-container pt-32 sm:pt-40 pb-20'>
         <Link
           href='/#portfolio'
-          className='inline-flex items-center gap-2 text-foreground-muted hover:text-accent text-sm mb-10 transition-colors'
+          className='inline-flex items-center gap-2 text-foreground-muted hover:text-accent text-sm mb-12 transition-colors'
         >
           <ArrowLeft className='h-4 w-4' />
           Back to portfolio

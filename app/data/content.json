@@ -120,6 +120,7 @@
         "gradient": "from-indigo-500/20 to-fuchsia-500/20",
         "letter": "V",
         "image": "/preview-venue-mobile-tonight-framed.png",
+        "pageUrl": "/venue-mobile",
         "galleryImages": [
           {
             "src": "/preview-venue-mobile-bookings-framed.png",
