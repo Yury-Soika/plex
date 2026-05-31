@@ -21,6 +21,12 @@ const sitemap = (): MetadataRoute.Sitemap => [
     changeFrequency: 'yearly',
     priority: 0.3,
   },
+  {
+    url: `${SITE_URL}/venue-mobile`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  },
 ];
 
 export default sitemap;
