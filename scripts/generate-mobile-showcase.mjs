@@ -21,6 +21,7 @@ const phoneB = toDataUri('preview-venue-mobile-bookings-framed.png');
 const W = 1200;
 const H = 630;
 const accent = '#818cf8';
+const darkAccent = '#0e1230';
 
 // Phone native ratio 620x1320 -> scale to height 470 (width ~221)
 const phoneH = 470;
@@ -31,7 +32,7 @@ const node = {
   props: {
     style: {
       width: W, height: H,
-      background: `linear-gradient(135deg, #0a0a0f 0%, ${accent}22 50%, #0a0a0f 100%)`,
+      background: `linear-gradient(135deg, #0a0a0f 0%, ${darkAccent} 50%, #0a0a0f 100%)`,
       display: 'flex', flexDirection: 'row', alignItems: 'center',
       padding: '0 72px', color: '#f4f4f6', fontFamily: 'Inter',
     },
