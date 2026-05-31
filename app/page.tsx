@@ -8,10 +8,12 @@ import Pricing from './components/Pricing';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import StructuredData from './components/StructuredData';
 
 const Home = () => {
   return (
     <main className='min-h-screen'>
+      <StructuredData />
       <Navbar />
       <Hero />
       <Services />

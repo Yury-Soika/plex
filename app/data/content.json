@@ -352,11 +352,6 @@
         { "name": "Terms of Service", "href": "/terms" }
       ]
     },
-    "social": {
-      "twitter": "https://twitter.com/plex",
-      "linkedin": "https://linkedin.com/company/plex",
-      "github": "https://github.com/plex"
-    },
     "copyright": "All rights reserved."
   }
 }
