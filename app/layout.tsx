@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from 'next/font/google';
 import { getPageTitle, getSiteInfo } from './utils/content';
 import './globals.css';
 import CookieBanner from './components/CookieBanner';
+import Analytics from './components/Analytics';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -76,6 +77,7 @@ const RootLayout = ({
       >
         {children}
         <CookieBanner />
+        <Analytics />
       </body>
     </html>
   );

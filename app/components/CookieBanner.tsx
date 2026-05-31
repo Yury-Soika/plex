@@ -77,6 +77,10 @@ const CookieBanner = () => {
 
   const handleChoice = (choice: ConsentChoice) => {
     persistConsentChoice(choice);
+    // Let Analytics react immediately (load GA on "all", stay off otherwise).
+    window.dispatchEvent(
+      new CustomEvent('plex-consent-change', { detail: choice })
+    );
     setIsVisible(false);
   };
 
