@@ -2,7 +2,7 @@
 
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
-import { Mail, MessageSquare, Send } from 'lucide-react';
+import { Calendar, Mail, MessageSquare, Send } from 'lucide-react';
 import { useState } from 'react';
 import { getContact } from '../utils/content';
 
@@ -73,6 +73,31 @@ const Contact = () => {
             viewport={{ once: true }}
             className='space-y-6'
           >
+            <a
+              href='https://cal.com/plexstudio'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='block rounded-2xl border border-accent/30 bg-gradient-to-br from-purple-950/40 to-surface/40 p-6 hover:border-accent/50 transition-colors group'
+            >
+              <div className='flex items-start gap-4'>
+                <div className='w-11 h-11 rounded-xl bg-accent/15 border border-accent/30 flex items-center justify-center flex-shrink-0'>
+                  <Calendar className='w-5 h-5 text-accent' />
+                </div>
+                <div>
+                  <div className='text-sm font-semibold mb-1'>
+                    Book a free intro call
+                  </div>
+                  <div className='text-sm text-foreground-muted'>
+                    Pick a time that works for you — we&apos;ll talk through what
+                    your venue needs.
+                  </div>
+                  <span className='inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-accent'>
+                    Open calendar →
+                  </span>
+                </div>
+              </div>
+            </a>
+
             <div className='flex items-start gap-4'>
               <div className='w-11 h-11 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0'>
                 <Mail className='w-5 h-5 text-accent' />
