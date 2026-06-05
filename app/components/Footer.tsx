@@ -30,6 +30,11 @@ const Footer = () => {
                 {footerData.badge}
               </p>
             )}
+            {footerData.address && (
+              <p className='mt-4 text-xs leading-relaxed text-foreground-dim max-w-xs'>
+                {footerData.address}
+              </p>
+            )}
           </div>
 
           <div>
