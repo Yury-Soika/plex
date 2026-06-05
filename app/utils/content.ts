@@ -49,6 +49,14 @@ export type PricingPackage = {
   highlighted: boolean;
 };
 
+export type AddOn = {
+  name: string;
+  price: string;
+  timeline?: string;
+  description: string;
+  features: string[];
+};
+
 export type Stat = {
   icon: string;
   label: string;

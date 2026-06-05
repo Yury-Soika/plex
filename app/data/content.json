@@ -204,78 +204,83 @@
   "pricing": {
     "title": "Transparent",
     "highlight": "Pricing",
-    "subtitle": "Clear starting points for the four kinds of projects we build most.",
+    "subtitle": "Three clear starting points, plus add-ons when you need them.",
     "packages": [
       {
         "name": "Landing Page",
         "price": "from $2,000",
         "timeline": "2–3 weeks",
-        "description": "A polished, fast-loading site for a venue, event, or single product",
+        "description": "A fast, sharp one-page site that gets your venue found and looking the part.",
         "features": [
-          "Custom Next.js + Tailwind build",
-          "Up to 5 sections or pages",
-          "Mobile-first responsive design",
-          "SEO + meta + Open Graph setup",
-          "Contact form with email delivery",
-          "Analytics integration",
-          "Domain + hosting setup"
+          "Custom-built — no templates",
+          "Up to 5 sections",
+          "Looks perfect on every phone",
+          "Set up to show on Google (SEO)",
+          "Contact form that emails you",
+          "Visitor analytics",
+          "Domain & hosting handled"
         ],
         "highlighted": false
       },
       {
         "name": "Full Website",
-        "price": "from $5,500",
+        "price": "from $6,500",
         "timeline": "5–8 weeks",
-        "description": "Marketing site + booking system + admin dashboard, all custom",
+        "description": "A full site that takes bookings online and gives you one dashboard to run them.",
         "features": [
-          "Next.js front-end + NestJS API",
-          "Booking & reservation system",
-          "PostgreSQL database",
-          "Admin dashboard",
-          "Authentication & user roles",
-          "Payment processing (Stripe)",
-          "SEO + performance tuning",
-          "2 months post-launch support"
+          "Everything in Landing Page, plus:",
+          "Online booking & reservations",
+          "Take deposits & payments (Stripe)",
+          "Admin dashboard to manage bookings",
+          "Staff logins with roles",
+          "Your site & data, owned by you",
+          "2 months support after launch"
         ],
         "highlighted": true
       },
       {
-        "name": "Mobile App",
-        "price": "from $9,500",
-        "timeline": "8–12 weeks",
-        "description": "Production React Native app for iOS & Android",
-        "features": [
-          "React Native (iOS + Android)",
-          "Brand-matched custom UI",
-          "REST API integration",
-          "Push notifications",
-          "Auth + role-based access",
-          "Offline support",
-          "App Store + Play Store submission",
-          "3 months post-launch support"
-        ],
-        "highlighted": false
-      },
-      {
         "name": "Full Platform",
-        "price": "from $20,000",
+        "price": "from $25,000",
         "timeline": "12–20 weeks",
-        "description": "Web + mobile + backend — a full operations product like our Venue concept",
+        "description": "Not a site plus an app — one unified system: web, backend, and a staff app all sharing the same live data.",
         "features": [
-          "Full SaaS architecture",
-          "Next.js web + React Native mobile",
-          "NestJS backend + PostgreSQL",
-          "Role-based permissions (CASL)",
-          "Real-time updates",
-          "Analytics dashboards",
-          "Scalable cloud infrastructure",
-          "6 months post-launch support"
+          "Everything in Full Website, plus:",
+          "Staff mobile app — included (iOS & Android)",
+          "Live updates across web & app, in real time",
+          "Analytics & occupancy dashboards",
+          "Detailed staff permissions",
+          "Built to scale as you grow",
+          "6 months support after launch"
         ],
         "highlighted": false
       }
     ],
-    "note": "Every project starts with a free discovery call to scope properly and give you a firm fixed-price quote. Ranges shown are typical — final price depends on scope, integrations, and content.",
-    "customQuote": "Need something different?"
+    "addOns": {
+      "title": "Add a Mobile App",
+      "subtitle": "A second product — a native app on top of your Full Website. (The Full Platform already includes one.)",
+      "items": [
+        {
+          "name": "Staff Mobile App",
+          "price": "from $12,000",
+          "timeline": "8–12 weeks",
+          "description": "Live bookings, guest list, and instant new-booking alerts in your floor team's pocket — a native iOS & Android app added on to your Full Website.",
+          "features": [
+            "Native iOS & Android",
+            "Push alerts for new bookings",
+            "Secure staff logins",
+            "Works offline",
+            "Published to App Store & Play Store",
+            "3 months support after launch"
+          ]
+        }
+      ]
+    },
+    "note": "A Full Website plus the staff app (≈$18,500) gives you a site and an app that share your bookings. The Full Platform builds those same pieces as one live system — real-time updates across web and app, analytics dashboards, room to scale, and 6 months of support. Not sure which fits? Every project starts with a free discovery call and a firm fixed-price quote.",
+    "customQuote": "Need something different?",
+    "founding": {
+      "badge": "Founding-client pricing",
+      "text": "We're a new studio building our first venue portfolio, so these rates are deliberately low — lock them in now, they climb as we grow. Pay in milestones, and nothing's due until you approve the design."
+    }
   },
   "about": {
     "title": "About",

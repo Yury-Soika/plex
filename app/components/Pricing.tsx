@@ -30,7 +30,24 @@ const Pricing = () => {
           </p>
         </motion.div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6'>
+        {pricingData.founding && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className='mb-10 flex flex-col sm:flex-row sm:items-center gap-3 rounded-xl border border-accent/30 bg-gradient-to-r from-purple-950/40 to-surface/40 px-5 py-4'
+          >
+            <span className='inline-flex shrink-0 items-center rounded-full bg-accent/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-accent'>
+              {pricingData.founding.badge}
+            </span>
+            <p className='text-sm text-foreground-muted'>
+              {pricingData.founding.text}
+            </p>
+          </motion.div>
+        )}
+
+        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6'>
           {packages.map((pkg, index) => (
             <motion.div
               key={index}
@@ -87,6 +104,54 @@ const Pricing = () => {
             </motion.div>
           ))}
         </div>
+
+        {pricingData.addOns && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className='mt-8 rounded-2xl border border-white/10 bg-surface/40 p-6 sm:p-8'
+          >
+            <div className='flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-6'>
+              <h3 className='text-lg font-semibold'>{pricingData.addOns.title}</h3>
+              <p className='text-sm text-foreground-muted'>
+                {pricingData.addOns.subtitle}
+              </p>
+            </div>
+
+            {pricingData.addOns.items.map((addon, index) => (
+              <div
+                key={index}
+                className='flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-10 rounded-xl border border-white/10 bg-white/[0.02] p-6'
+              >
+                <div className='lg:w-1/3'>
+                  <h4 className='text-lg font-semibold mb-1'>{addon.name}</h4>
+                  <div className='plex-display text-2xl text-accent'>
+                    {addon.price}
+                  </div>
+                  {addon.timeline && (
+                    <p className='text-[11px] uppercase tracking-[0.16em] text-foreground-dim mt-1'>
+                      {addon.timeline}
+                    </p>
+                  )}
+                  <p className='text-sm text-foreground-muted mt-3'>
+                    {addon.description}
+                  </p>
+                </div>
+
+                <ul className='flex-1 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5'>
+                  {addon.features.map((feature, idx) => (
+                    <li key={idx} className='flex items-start gap-2.5 text-sm'>
+                      <Check className='w-4 h-4 text-accent flex-shrink-0 mt-0.5' />
+                      <span className='text-foreground-muted'>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </motion.div>
+        )}
 
         <motion.p
           initial={{ opacity: 0 }}
