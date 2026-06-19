@@ -142,7 +142,7 @@ const InvoicePage = () => {
   return (
     <main className='min-h-screen bg-slate-50 text-slate-950'>
       <div
-        className='mx-auto grid w-full max-w-[108rem] justify-around gap-6 px-4 py-6 sm:px-6 xl:grid-cols-[minmax(40rem,56rem)_auto] lg:px-8'
+        className='mx-auto grid w-full max-w-[100rem] items-start justify-center gap-6 px-4 py-6 sm:px-6 lg:px-8 xl:grid-cols-[minmax(0,1fr)_minmax(34rem,48rem)]'
       >
         <section className='min-w-0'>
           <div className='mb-6 flex flex-col gap-4 border-b border-slate-200 pb-5 sm:flex-row sm:items-center sm:justify-between'>
@@ -308,7 +308,7 @@ const InvoicePage = () => {
                 {invoice.items.map((item) => (
                   <div
                     key={item.id}
-                    className='grid gap-3 rounded-md border border-slate-200 p-3 lg:grid-cols-[minmax(12rem,1fr)_9rem_5.75rem_2.5rem]'
+                    className='grid gap-3 rounded-md border border-slate-200 p-3 2xl:grid-cols-[minmax(12rem,1fr)_9rem_5.75rem_2.5rem]'
                   >
                     <label>
                       <span className={labelClass}>Description</span>
@@ -399,7 +399,7 @@ const InvoicePage = () => {
                           ),
                         )
                       }
-                      className='inline-flex h-10 items-center justify-center rounded-md border border-slate-300 text-slate-600 transition hover:bg-slate-100 lg:mt-5'
+                      className='inline-flex h-10 items-center justify-center rounded-md border border-slate-300 text-slate-600 transition hover:bg-slate-100 2xl:mt-5'
                     >
                       <Trash2 className='h-4 w-4' />
                     </button>
@@ -502,10 +502,14 @@ const InvoicePage = () => {
           </div>
         </section>
 
-        <aside className='min-w-0 xl:h-full xl:justify-self-center'>
-          <div className='aspect-[210/297] w-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm xl:h-full xl:w-auto'>
-            <div className='h-full w-full bg-slate-100'>
-              <InvoicePreview invoice={invoice} />
+        <aside className='min-w-0'>
+          <div className='xl:sticky xl:top-6'>
+            <div
+              className='mx-auto aspect-[210/297] w-full max-w-[48rem] overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm xl:w-[min(100%,calc((100dvh-3rem)*210/297))] xl:max-w-full'
+            >
+              <div className='h-full w-full bg-slate-100'>
+                <InvoicePreview invoice={invoice} />
+              </div>
             </div>
           </div>
         </aside>
