@@ -208,7 +208,7 @@
     "packages": [
       {
         "name": "Landing Page",
-        "price": "from $2,000",
+        "price": "Custom quote",
         "timeline": "2–3 weeks",
         "description": "A fast, sharp one-page site that gets your venue found and looking the part.",
         "features": [
@@ -224,7 +224,7 @@
       },
       {
         "name": "Full Website",
-        "price": "from $6,500",
+        "price": "Custom quote",
         "timeline": "5–8 weeks",
         "description": "A full site that takes bookings online and gives you one dashboard to run them.",
         "features": [
@@ -240,7 +240,7 @@
       },
       {
         "name": "Full Platform",
-        "price": "from $25,000",
+        "price": "Custom quote",
         "timeline": "12–20 weeks",
         "description": "Not a site plus an app — one unified system: web, backend, and a staff app all sharing the same live data.",
         "features": [
@@ -261,7 +261,7 @@
       "items": [
         {
           "name": "Staff Mobile App",
-          "price": "from $12,000",
+          "price": "Custom quote",
           "timeline": "8–12 weeks",
           "description": "Live bookings, guest list, and instant new-booking alerts in your floor team's pocket — a native iOS & Android app added on to your Full Website.",
           "features": [
@@ -275,7 +275,7 @@
         }
       ]
     },
-    "note": "A Full Website plus the staff app (≈$18,500) gives you a site and an app that share your bookings. The Full Platform builds those same pieces as one live system — real-time updates across web and app, analytics dashboards, room to scale, and 6 months of support. Not sure which fits? Every project starts with a free discovery call and a firm fixed-price quote.",
+    "note": "A Full Website plus the staff app gives you a site and an app that share your bookings. The Full Platform builds those same pieces as one live system — real-time updates across web and app, analytics dashboards, room to scale, and 6 months of support. Not sure which fits? Every project starts with a free discovery call and a firm fixed-price quote.",
     "customQuote": "Need something different?",
     "founding": {
       "badge": "Founding-client pricing",
