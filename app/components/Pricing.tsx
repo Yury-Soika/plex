@@ -2,10 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
-import { getPricing } from '../utils/content';
+import { useLanguage } from '../i18n/LanguageProvider';
 
 const Pricing = () => {
-  const pricingData = getPricing();
+  const { t } = useLanguage();
+  const pricingData = t.pricing;
   const packages = pricingData.packages;
 
   return (
@@ -18,7 +19,7 @@ const Pricing = () => {
           viewport={{ once: true }}
           className='max-w-2xl mb-14'
         >
-          <p className='plex-eyebrow mb-3'>Pricing</p>
+          <p className='plex-eyebrow mb-3'>{pricingData.eyebrow}</p>
           <h2 className='text-4xl sm:text-5xl font-bold tracking-tight'>
             {pricingData.title}{' '}
             <span className='plex-display bg-gradient-to-r from-purple-300 via-fuchsia-300 to-violet-400 bg-clip-text text-transparent'>
@@ -29,23 +30,6 @@ const Pricing = () => {
             {pricingData.subtitle}
           </p>
         </motion.div>
-
-        {pricingData.founding && (
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className='mb-10 flex flex-col sm:flex-row sm:items-center gap-3 rounded-xl border border-accent/30 bg-gradient-to-r from-purple-950/40 to-surface/40 px-5 py-4'
-          >
-            <span className='inline-flex shrink-0 items-center rounded-full bg-accent/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-accent'>
-              {pricingData.founding.badge}
-            </span>
-            <p className='text-sm text-foreground-muted'>
-              {pricingData.founding.text}
-            </p>
-          </motion.div>
-        )}
 
         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6'>
           {packages.map((pkg, index) => (
@@ -63,14 +47,11 @@ const Pricing = () => {
             >
               {pkg.highlighted && (
                 <span className='absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-purple-500 to-violet-500 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white shadow-lg shadow-purple-500/40'>
-                  Recommended
+                  {pricingData.recommended}
                 </span>
               )}
 
               <h3 className='text-xl font-semibold mb-2'>{pkg.name}</h3>
-              <div className='plex-display text-3xl text-accent mb-1'>
-                {pkg.price}
-              </div>
               {pkg.timeline && (
                 <p className='text-[11px] uppercase tracking-[0.16em] text-foreground-dim mb-3'>
                   {pkg.timeline}
@@ -89,6 +70,24 @@ const Pricing = () => {
                 ))}
               </ul>
 
+              {pkg.extras && pkg.extras.length > 0 && (
+                <div className='mb-8'>
+                  {pkg.extrasLabel && (
+                    <p className='mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-accent'>
+                      {pkg.extrasLabel}
+                    </p>
+                  )}
+                  <ul className='space-y-3'>
+                    {pkg.extras.map((feature, idx) => (
+                      <li key={idx} className='flex items-start gap-2.5 text-sm'>
+                        <Check className='w-4 h-4 text-accent flex-shrink-0 mt-0.5' />
+                        <span className='text-foreground'>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               <button
                 onClick={() =>
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
@@ -99,7 +98,7 @@ const Pricing = () => {
                     : 'border border-white/15 bg-white/5 hover:bg-white/10 text-foreground'
                 }`}
               >
-                Get Started
+                {pricingData.getStarted}
               </button>
             </motion.div>
           ))}
@@ -127,9 +126,6 @@ const Pricing = () => {
               >
                 <div className='lg:w-1/3'>
                   <h4 className='text-lg font-semibold mb-1'>{addon.name}</h4>
-                  <div className='plex-display text-2xl text-accent'>
-                    {addon.price}
-                  </div>
                   {addon.timeline && (
                     <p className='text-[11px] uppercase tracking-[0.16em] text-foreground-dim mt-1'>
                       {addon.timeline}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useLanguage } from '../i18n/LanguageProvider';
 
 const CONSENT_COOKIE_NAME = 'plex_cookie_consent';
 const CONSENT_STORAGE_KEY = 'plex_cookie_consent';
@@ -59,6 +60,8 @@ const persistConsentChoice = (choice: ConsentChoice) => {
 };
 
 const CookieBanner = () => {
+  const { t } = useLanguage();
+  const copy = t.cookie;
   // Track whether we've checked stored consent on the client
   const [hasCheckedConsent, setHasCheckedConsent] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -88,18 +91,15 @@ const CookieBanner = () => {
     <div className='fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-surface/95 backdrop-blur-lg'>
       <div className='mx-auto flex max-w-5xl flex-col gap-4 px-6 py-5 text-sm text-foreground-muted sm:flex-row sm:items-center sm:justify-between'>
         <div className='space-y-1.5'>
-          <p className='font-semibold text-foreground text-sm'>Cookies & similar technologies</p>
-          <p className='text-xs leading-relaxed'>
-            We use essential cookies to make Plex work as intended and, with your consent,
-            additional cookies to understand how our site is used.
-          </p>
+          <p className='font-semibold text-foreground text-sm'>{copy.title}</p>
+          <p className='text-xs leading-relaxed'>{copy.body}</p>
           <p className='text-xs'>
-            See our{' '}
+            {copy.seeOur}{' '}
             <a
               href='/privacy'
               className='text-accent underline underline-offset-2 hover:text-accent-hover'
             >
-              Privacy & Cookies Policy
+              {copy.policyLink}
             </a>
             .
           </p>
@@ -111,14 +111,14 @@ const CookieBanner = () => {
             onClick={() => handleChoice('all')}
             className='rounded-full bg-accent px-5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-lg shadow-purple-500/30 transition-colors hover:bg-accent-hover'
           >
-            Allow all
+            {copy.allowAll}
           </button>
           <button
             type='button'
             onClick={() => handleChoice('essential')}
             className='px-3 py-2 text-xs font-medium uppercase tracking-[0.16em] text-foreground-muted hover:text-foreground transition-colors'
           >
-            Only essential
+            {copy.onlyEssential}
           </button>
         </div>
       </div>

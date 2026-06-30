@@ -1,10 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { getTechStack } from '../utils/content';
+import { useLanguage } from '../i18n/LanguageProvider';
 
 const TechStack = () => {
-  const techData = getTechStack();
+  const { t } = useLanguage();
+  const techData = t.tech;
   const technologies = techData.technologies;
 
   return (
@@ -17,7 +18,7 @@ const TechStack = () => {
           viewport={{ once: true }}
           className='max-w-2xl mb-12'
         >
-          <p className='plex-eyebrow mb-3'>Stack</p>
+          <p className='plex-eyebrow mb-3'>{techData.eyebrow}</p>
           <h2 className='text-4xl sm:text-5xl font-bold tracking-tight'>
             {techData.title}{' '}
             <span className='plex-display bg-gradient-to-r from-purple-300 via-fuchsia-300 to-violet-400 bg-clip-text text-transparent'>

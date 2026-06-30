@@ -2,10 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { Code2, Smartphone, Calendar, Sparkles } from 'lucide-react';
-import { getServices } from '../utils/content';
+import { useLanguage } from '../i18n/LanguageProvider';
 
 const Services = () => {
-  const servicesData = getServices();
+  const { t } = useLanguage();
+  const servicesData = t.services;
 
   const iconMap = {
     code: Code2,
@@ -29,7 +30,7 @@ const Services = () => {
           viewport={{ once: true }}
           className='max-w-2xl mb-14'
         >
-          <p className='plex-eyebrow mb-3'>Services</p>
+          <p className='plex-eyebrow mb-3'>{servicesData.eyebrow}</p>
           <h2 className='text-4xl sm:text-5xl font-bold tracking-tight'>
             {servicesData.title}{' '}
             <span className='plex-display bg-gradient-to-r from-purple-300 via-fuchsia-300 to-violet-400 bg-clip-text text-transparent'>

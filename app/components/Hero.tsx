@@ -3,11 +3,12 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-import { getHero, getPortfolio } from '../utils/content';
+import { useLanguage } from '../i18n/LanguageProvider';
 
 const Hero = () => {
-  const hero = getHero();
-  const portfolio = getPortfolio();
+  const { t } = useLanguage();
+  const hero = t.hero;
+  const portfolio = t.portfolio;
   const projects = portfolio.projects.slice(0, 3);
 
   const scrollToSection = (id: string) => {
@@ -39,7 +40,7 @@ const Hero = () => {
               className='inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-foreground-muted backdrop-blur-sm'
             >
               <span className='h-1.5 w-1.5 rounded-full bg-purple-400 animate-pulse' />
-              Digital studio · Nightlife & hospitality
+              {hero.badge}
             </motion.span>
 
             <motion.h1
@@ -92,15 +93,15 @@ const Hero = () => {
             >
               <span className='flex items-center gap-2'>
                 <span className='h-1.5 w-1.5 rounded-full bg-emerald-400' />
-                4 concept projects live
+                {hero.stats.live}
               </span>
               <span className='flex items-center gap-2'>
                 <span className='h-1.5 w-1.5 rounded-full bg-purple-400' />
-                Next.js · NestJS · React Native
+                {hero.stats.stack}
               </span>
               <span className='flex items-center gap-2'>
                 <span className='h-1.5 w-1.5 rounded-full bg-fuchsia-400' />
-                Hospitality-only
+                {hero.stats.focus}
               </span>
             </motion.div>
           </motion.div>
@@ -143,7 +144,7 @@ const Hero = () => {
                       {project.title}
                     </span>
                     <span className='text-[10px] uppercase tracking-[0.2em] text-accent'>
-                      Demo
+                      {hero.demoLabel}
                     </span>
                   </div>
                 </motion.a>
@@ -161,7 +162,7 @@ const Hero = () => {
         className='absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-foreground-dim hover:text-foreground transition-colors'
         aria-label='Scroll to portfolio'
       >
-        <span className='text-[10px] uppercase tracking-[0.22em]'>Explore</span>
+        <span className='text-[10px] uppercase tracking-[0.22em]'>{hero.explore}</span>
         <ArrowDown className='w-4 h-4' />
       </motion.button>
     </section>

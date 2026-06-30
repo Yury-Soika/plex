@@ -1,10 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { getAbout } from '../utils/content';
+import { useLanguage } from '../i18n/LanguageProvider';
 
 const About = () => {
-  const aboutData = getAbout();
+  const { t } = useLanguage();
+  const aboutData = t.about;
 
   return (
     <section id='about' className='plex-section'>
@@ -16,7 +17,7 @@ const About = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <p className='plex-eyebrow mb-3'>Who we are</p>
+            <p className='plex-eyebrow mb-3'>{aboutData.eyebrow}</p>
             <h2 className='text-4xl sm:text-5xl font-bold tracking-tight mb-6'>
               {aboutData.title}{' '}
               <span className='plex-display bg-gradient-to-r from-purple-300 via-fuchsia-300 to-violet-400 bg-clip-text text-transparent'>
@@ -24,7 +25,7 @@ const About = () => {
               </span>
             </h2>
             <p className='text-lg text-foreground-muted leading-relaxed'>
-              {aboutData.content.mission}
+              {aboutData.mission}
             </p>
 
             <div className='mt-10 grid grid-cols-2 gap-4'>
@@ -55,7 +56,7 @@ const About = () => {
             viewport={{ once: true }}
             className='space-y-4'
           >
-            {aboutData.content.values.map((value, index) => (
+            {aboutData.values.map((value, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 16 }}

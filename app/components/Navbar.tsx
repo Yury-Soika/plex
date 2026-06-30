@@ -3,13 +3,15 @@
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { getNavigation, getSiteInfo } from '../utils/content';
+import { useLanguage } from '../i18n/LanguageProvider';
+import { LANGS, LANG_LABELS } from '../i18n/types';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const navigation = getNavigation();
-  const siteInfo = getSiteInfo();
+  const { t, lang, setLang } = useLanguage();
+  const navigation = t.nav;
+  const siteInfo = t.site;
   const pathname = usePathname();
   const router = useRouter();
 
@@ -44,7 +46,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || isOpen
           ? 'bg-background/85 backdrop-blur-lg border-b border-white/10'
           : 'bg-transparent border-b border-transparent'
       }`}
@@ -72,6 +74,22 @@ const Navbar = () => {
                   className='hover:text-foreground transition-colors'
                 >
                   {link.name}
+                </button>
+              ))}
+            </div>
+            <div className='flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-0.5'>
+              {LANGS.map((code) => (
+                <button
+                  key={code}
+                  onClick={() => setLang(code)}
+                  aria-pressed={lang === code}
+                  className={`rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors ${
+                    lang === code
+                      ? 'bg-accent text-white'
+                      : 'text-foreground-muted hover:text-foreground'
+                  }`}
+                >
+                  {LANG_LABELS[code]}
                 </button>
               ))}
             </div>
@@ -110,6 +128,22 @@ const Navbar = () => {
               >
                 {navigation.contact}
               </button>
+              <div className='mt-3 flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-0.5 self-start'>
+                {LANGS.map((code) => (
+                  <button
+                    key={code}
+                    onClick={() => setLang(code)}
+                    aria-pressed={lang === code}
+                    className={`rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors ${
+                      lang === code
+                        ? 'bg-accent text-white'
+                        : 'text-foreground-muted hover:text-foreground'
+                    }`}
+                  >
+                    {LANG_LABELS[code]}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         )}

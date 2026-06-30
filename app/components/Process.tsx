@@ -2,10 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { Search, Palette, Code, Rocket } from 'lucide-react';
-import { getProcess } from '../utils/content';
+import { useLanguage } from '../i18n/LanguageProvider';
 
 const Process = () => {
-  const processData = getProcess();
+  const { t } = useLanguage();
+  const processData = t.process;
 
   const iconMap = {
     '01': Search,
@@ -29,7 +30,7 @@ const Process = () => {
           viewport={{ once: true }}
           className='max-w-2xl mb-14'
         >
-          <p className='plex-eyebrow mb-3'>How we work</p>
+          <p className='plex-eyebrow mb-3'>{processData.eyebrow}</p>
           <h2 className='text-4xl sm:text-5xl font-bold tracking-tight'>
             {processData.title}{' '}
             <span className='plex-display bg-gradient-to-r from-purple-300 via-fuchsia-300 to-violet-400 bg-clip-text text-transparent'>
@@ -62,7 +63,7 @@ const Process = () => {
 
                   <div className='text-center'>
                     <p className='text-[10px] font-semibold uppercase tracking-[0.22em] text-accent mb-2'>
-                      Step {step.step}
+                      {processData.stepLabel} {step.step}
                     </p>
                     <h3 className='text-lg font-semibold mb-3'>{step.title}</h3>
                     <p className='text-sm text-foreground-muted leading-relaxed'>

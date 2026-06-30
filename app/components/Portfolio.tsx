@@ -5,10 +5,11 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ArrowUpRight, Globe, Download, Apple, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPortfolio } from '../utils/content';
+import { useLanguage } from '../i18n/LanguageProvider';
 
 const Portfolio = () => {
-  const portfolioData = getPortfolio();
+  const { t } = useLanguage();
+  const portfolioData = t.portfolio;
   const projects = portfolioData.projects;
   const [lightboxProject, setLightboxProject] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -76,7 +77,7 @@ const Portfolio = () => {
           viewport={{ once: true }}
           className='max-w-2xl mb-16'
         >
-          <p className='plex-eyebrow mb-3'>Selected work</p>
+          <p className='plex-eyebrow mb-3'>{portfolioData.eyebrow}</p>
           <h2 className='text-4xl sm:text-5xl font-bold tracking-tight'>
             {portfolioData.title}{' '}
             <span className='plex-display bg-gradient-to-r from-purple-300 via-fuchsia-300 to-violet-400 bg-clip-text text-transparent'>
@@ -128,7 +129,7 @@ const Portfolio = () => {
                       {previewImage}
                       <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
                       <div className='absolute top-4 right-4 inline-flex items-center justify-center rounded-full bg-black/60 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300'>
-                        View gallery
+                        {portfolioData.actions.viewGallery}
                       </div>
                     </button>
                   ) : (
@@ -191,7 +192,7 @@ const Portfolio = () => {
                       className='mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent hover:text-accent-hover transition-colors group'
                     >
                       <Globe className='w-4 h-4' />
-                      Visit live site
+                      {portfolioData.actions.visitSite}
                       <ArrowUpRight className='w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
                     </a>
                   )}
@@ -202,11 +203,11 @@ const Portfolio = () => {
                         className='inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-white text-xs font-semibold uppercase tracking-[0.18em] transition-colors shadow-lg shadow-purple-500/25'
                       >
                         <Download className='w-3.5 h-3.5' />
-                        Download APK
+                        {portfolioData.actions.downloadApk}
                       </a>
                       <span className='inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-foreground-muted'>
                         <Apple className='w-3.5 h-3.5' />
-                        iOS — Coming Soon
+                        {portfolioData.actions.iosComingSoon}
                       </span>
                     </div>
                   )}
@@ -215,7 +216,7 @@ const Portfolio = () => {
                       href={project.pageUrl}
                       className='mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent hover:text-accent-hover transition-colors group'
                     >
-                      View full details
+                      {portfolioData.actions.viewDetails}
                       <ArrowUpRight className='w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
                     </Link>
                   )}

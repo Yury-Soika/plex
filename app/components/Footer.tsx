@@ -1,13 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { Linkedin } from 'lucide-react';
-import { getFooter, getSiteInfo } from '../utils/content';
+import { Linkedin, Instagram, Facebook } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageProvider';
+import { SOCIAL } from '../i18n/site';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const footerData = getFooter();
-  const siteInfo = getSiteInfo();
+  const { t } = useLanguage();
+  const footerData = t.footer;
+  const siteInfo = t.site;
 
   return (
     <footer className='border-t border-white/10 bg-background py-16'>
@@ -42,7 +44,7 @@ const Footer = () => {
               {footerData.quickLinksTitle}
             </h3>
             <ul className='space-y-2.5'>
-              {footerData.links.quick.map((link) => (
+              {footerData.quickLinks.map((link) => (
                 <li key={link.name}>
                   {link.href.startsWith('/') ? (
                     <Link
@@ -76,21 +78,37 @@ const Footer = () => {
             >
               {footerData.email}
             </a>
-            {footerData.social?.linkedin && (
-              <div className='mt-4'>
-                <a
-                  href={footerData.social.linkedin}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  aria-label='Plex on LinkedIn'
-                  className='inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-foreground-muted transition-colors hover:border-accent hover:text-accent'
-                >
-                  <Linkedin className='h-4 w-4' />
-                </a>
-              </div>
-            )}
+            <div className='mt-4 flex items-center gap-2'>
+              <a
+                href={SOCIAL.linkedin}
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label='Plex on LinkedIn'
+                className='inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-foreground-muted transition-colors hover:border-accent hover:text-accent'
+              >
+                <Linkedin className='h-4 w-4' />
+              </a>
+              <a
+                href={SOCIAL.instagram}
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label='Plex on Instagram'
+                className='inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-foreground-muted transition-colors hover:border-accent hover:text-accent'
+              >
+                <Instagram className='h-4 w-4' />
+              </a>
+              <a
+                href={SOCIAL.facebook}
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label='Plex on Facebook'
+                className='inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-foreground-muted transition-colors hover:border-accent hover:text-accent'
+              >
+                <Facebook className='h-4 w-4' />
+              </a>
+            </div>
             <div className='mt-4 flex flex-wrap gap-3'>
-              {footerData.links.legal.map((link) => (
+              {footerData.legalLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}

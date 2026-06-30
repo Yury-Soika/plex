@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
-import { getPageTitle, getSiteInfo } from './utils/content';
+import { en } from './i18n/content';
+import { SITE_URL } from './i18n/site';
+import { LanguageProvider } from './i18n/LanguageProvider';
 import './globals.css';
 import CookieBanner from './components/CookieBanner';
 import Analytics from './components/Analytics';
@@ -18,12 +20,12 @@ const playfair = Playfair_Display({
   style: ['italic'],
 });
 
-const site = getSiteInfo();
-const SITE_URL = 'https://plex.ee';
+const site = en.site;
+const pageTitle = `${site.name} - ${site.tagline}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: getPageTitle(),
+  title: pageTitle,
   description: site.description,
   keywords: [
     'digital studio',
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
     type: 'website',
     url: SITE_URL,
     siteName: 'Plex',
-    title: getPageTitle(),
+    title: pageTitle,
     description: site.description,
     locale: 'en_US',
     images: [
@@ -55,7 +57,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: getPageTitle(),
+    title: pageTitle,
     description: site.description,
     images: ['/og-image.png'],
   },
@@ -75,9 +77,11 @@ const RootLayout = ({
         className={`${inter.variable} ${playfair.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        {children}
-        <CookieBanner />
-        <Analytics />
+        <LanguageProvider>
+          {children}
+          <CookieBanner />
+          <Analytics />
+        </LanguageProvider>
       </body>
     </html>
   );

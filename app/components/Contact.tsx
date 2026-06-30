@@ -4,13 +4,14 @@ import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { Calendar, Mail, MessageSquare, Send } from 'lucide-react';
 import { useState } from 'react';
-import { getContact } from '../utils/content';
+import { useLanguage } from '../i18n/LanguageProvider';
 
 const inputCls =
   'w-full rounded-xl border border-white/10 bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-foreground-dim outline-none focus:border-accent/60 transition-colors';
 
 const Contact = () => {
-  const contactData = getContact();
+  const { t } = useLanguage();
+  const contactData = t.contact;
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -53,7 +54,7 @@ const Contact = () => {
           viewport={{ once: true }}
           className='max-w-2xl mb-14'
         >
-          <p className='plex-eyebrow mb-3'>Contact</p>
+          <p className='plex-eyebrow mb-3'>{contactData.eyebrow}</p>
           <h2 className='text-4xl sm:text-5xl font-bold tracking-tight'>
             {contactData.title}{' '}
             <span className='plex-display bg-gradient-to-r from-purple-300 via-fuchsia-300 to-violet-400 bg-clip-text text-transparent'>
@@ -85,14 +86,13 @@ const Contact = () => {
                 </div>
                 <div>
                   <div className='text-sm font-semibold mb-1'>
-                    Book a free intro call
+                    {contactData.bookCall.title}
                   </div>
                   <div className='text-sm text-foreground-muted'>
-                    Pick a time that works for you — we&apos;ll talk through what
-                    your venue needs.
+                    {contactData.bookCall.text}
                   </div>
                   <span className='inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-accent'>
-                    Open calendar →
+                    {contactData.bookCall.cta}
                   </span>
                 </div>
               </div>
@@ -103,7 +103,7 @@ const Contact = () => {
                 <Mail className='w-5 h-5 text-accent' />
               </div>
               <div>
-                <div className='text-sm font-semibold mb-1'>Email</div>
+                <div className='text-sm font-semibold mb-1'>{contactData.emailLabel}</div>
                 <a
                   href='mailto:contact@plex.ee'
                   className='text-foreground-muted hover:text-accent transition-colors text-sm'
@@ -118,9 +118,9 @@ const Contact = () => {
                 <MessageSquare className='w-5 h-5 text-accent' />
               </div>
               <div>
-                <div className='text-sm font-semibold mb-1'>Response time</div>
+                <div className='text-sm font-semibold mb-1'>{contactData.responseLabel}</div>
                 <div className='text-sm text-foreground-muted'>
-                  Within 24 hours, weekdays
+                  {contactData.responseValue}
                 </div>
               </div>
             </div>
@@ -160,7 +160,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 className={inputCls}
-                placeholder='John Doe'
+                placeholder={contactData.form.placeholders.name}
               />
             </div>
 
@@ -176,7 +176,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 className={inputCls}
-                placeholder='john@example.com'
+                placeholder={contactData.form.placeholders.email}
               />
             </div>
 
@@ -192,7 +192,7 @@ const Contact = () => {
                 required
                 rows={5}
                 className={`${inputCls} resize-none`}
-                placeholder='Tell us about your project...'
+                placeholder={contactData.form.placeholders.message}
               />
             </div>
 
@@ -210,7 +210,7 @@ const Contact = () => {
                 animate={{ opacity: 1 }}
                 className='rounded-xl border border-emerald-400/30 bg-emerald-500/10 p-3 text-center text-sm text-emerald-300'
               >
-                Message sent. We&apos;ll get back to you soon.
+                {contactData.success}
               </motion.div>
             )}
 
@@ -220,7 +220,7 @@ const Contact = () => {
                 animate={{ opacity: 1 }}
                 className='rounded-xl border border-rose-400/30 bg-rose-500/10 p-3 text-center text-sm text-rose-300'
               >
-                Something went wrong. Please try again or email us directly.
+                {contactData.error}
               </motion.div>
             )}
           </motion.form>
