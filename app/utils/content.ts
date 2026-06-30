@@ -26,6 +26,7 @@ export type Project = {
     src: string;
     alt: string;
   }[];
+  pageUrl?: string;
   apkUrl?: string;
 };
 
