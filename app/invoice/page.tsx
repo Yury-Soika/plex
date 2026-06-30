@@ -122,7 +122,12 @@ const InvoicePage = () => {
       });
 
       if (!response.ok) {
-        throw new Error('PDF generation failed');
+        const detail = await response
+          .json()
+          .then((body) => body?.error as string | undefined)
+          .catch(() => undefined);
+
+        throw new Error(detail ?? 'PDF generation failed');
       }
 
       const blob = await response.blob();
