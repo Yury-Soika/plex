@@ -60,7 +60,7 @@ npm install
 ### Set Up Environment Variables
 
 ```bash
-cp env.template .env
+cp .env.example .env
 ```
 
 ### Run Development Server
@@ -82,7 +82,7 @@ The application uses these essential environment variables:
 - `NEXT_TELEMETRY_DISABLED` - Disable Next.js telemetry
 - `NODE_OPTIONS` - Node.js memory optimization
 
-Copy `env.template` to `.env.local` for development or `.env.production` for production.
+Copy `.env.example` to `.env.local` for development or `.env.production` for production.
 
 ### Build for Production
 

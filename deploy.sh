@@ -25,7 +25,7 @@ PORT="$(load_env_var DEPLOY_PORT "3000")"
 SSH_PORT="$(load_env_var DEPLOY_SSH_PORT "22")"
 
 if [[ -z "${USER}" || -z "${HOST}" || -z "${APP_ROOT}" ]]; then
-  echo "Missing DEPLOY_USER, DEPLOY_HOST, or DEPLOY_APP_ROOT — set them in .env (see env.template)." >&2
+  echo "Missing DEPLOY_USER, DEPLOY_HOST, or DEPLOY_APP_ROOT — set them in .env (see .env.example)." >&2
   exit 1
 fi
 
