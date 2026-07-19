@@ -17,12 +17,17 @@ load_env_var() {
   echo "${default}"
 }
 
-# Configuration (overridable via .env DEPLOY_* vars)
-USER="$(load_env_var DEPLOY_USER "iwbfnzmznr")"
-HOST="$(load_env_var DEPLOY_HOST "66.29.148.128")"
-APP_ROOT="$(load_env_var DEPLOY_APP_ROOT "/home/iwbfnzmznr/plex")"
+# Configuration (set DEPLOY_USER / DEPLOY_HOST / DEPLOY_APP_ROOT in .env — no defaults, this repo is public)
+USER="$(load_env_var DEPLOY_USER "")"
+HOST="$(load_env_var DEPLOY_HOST "")"
+APP_ROOT="$(load_env_var DEPLOY_APP_ROOT "")"
 PORT="$(load_env_var DEPLOY_PORT "3000")"
 SSH_PORT="$(load_env_var DEPLOY_SSH_PORT "22")"
+
+if [[ -z "${USER}" || -z "${HOST}" || -z "${APP_ROOT}" ]]; then
+  echo "Missing DEPLOY_USER, DEPLOY_HOST, or DEPLOY_APP_ROOT — set them in .env (see env.template)." >&2
+  exit 1
+fi
 
 echo "==> Deploying Plex to ${USER}@${HOST}:${APP_ROOT}"
 
