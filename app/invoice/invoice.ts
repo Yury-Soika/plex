@@ -69,10 +69,19 @@ export const calculateDueDate = (issueDate: string, days = 5) => {
   return date.toISOString().slice(0, 10);
 };
 
+export const getTodayDate = () => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+};
+
 export const defaultInvoice: InvoiceData = {
   invoiceNumber: 'INV-2026-001',
-  issueDate: '2026-06-18',
-  dueDate: calculateDueDate('2026-06-18'),
+  issueDate: getTodayDate(),
+  dueDate: calculateDueDate(getTodayDate()),
   currency: 'EUR',
   taxRate: 24,
   taxMode: 'included',
