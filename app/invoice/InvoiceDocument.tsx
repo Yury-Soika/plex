@@ -411,22 +411,28 @@ const InvoiceDocument = ({ invoice }: { invoice: InvoiceData }) => {
                 <Text style={styles.bankLabel}>Account holder</Text>
                 <Text style={styles.bankValue}>{invoice.sender.name}</Text>
               </View>
-              <View style={styles.bankRow}>
-                <Text style={styles.bankLabel}>IBAN</Text>
-                <Text style={styles.bankValue}>{invoice.payment.iban}</Text>
-              </View>
-              <View style={styles.bankRow}>
-                <Text style={styles.bankLabel}>BIC</Text>
-                <Text style={styles.bankValue}>{invoice.payment.bic}</Text>
-              </View>
-              <View style={styles.bankRow}>
-                <Text style={styles.bankLabel}>Bank name and address</Text>
-                <Text style={styles.bankValue}>
-                  {invoice.payment.bankName}
-                  {'\n'}
-                  {invoice.payment.bankAddress}
-                </Text>
-              </View>
+              {invoice.payment.iban ? (
+                <View style={styles.bankRow}>
+                  <Text style={styles.bankLabel}>IBAN</Text>
+                  <Text style={styles.bankValue}>{invoice.payment.iban}</Text>
+                </View>
+              ) : null}
+              {invoice.payment.bic ? (
+                <View style={styles.bankRow}>
+                  <Text style={styles.bankLabel}>BIC</Text>
+                  <Text style={styles.bankValue}>{invoice.payment.bic}</Text>
+                </View>
+              ) : null}
+              {invoice.payment.bankName || invoice.payment.bankAddress ? (
+                <View style={styles.bankRow}>
+                  <Text style={styles.bankLabel}>Bank name and address</Text>
+                  <Text style={styles.bankValue}>
+                    {[invoice.payment.bankName, invoice.payment.bankAddress]
+                      .filter(Boolean)
+                      .join('\n')}
+                  </Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </View>
