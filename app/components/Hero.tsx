@@ -140,8 +140,14 @@ const Hero = () => {
                   initial={false}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: 0.4 + i * 0.15 }}
-                  whileHover={{ scale: 1.04, rotate: 0, zIndex: 40 }}
-                  className={`absolute w-[57%] aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/40 ring-1 ring-black/40 ${positions[i]}`}
+                  whileHover={{
+                    scale: 1.06,
+                    rotate: 0,
+                    y: -10,
+                    zIndex: 60,
+                    transition: { duration: 0.25, ease: 'easeOut' },
+                  }}
+                  className={`absolute w-[57%] aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/40 ring-1 ring-black/40 transition-shadow duration-300 hover:shadow-[0_20px_60px_-10px_rgba(168,85,247,0.45)] hover:border-accent/50 ${positions[i]}`}
                 >
                   {project.image && (
                     <Image
