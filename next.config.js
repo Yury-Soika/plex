@@ -18,7 +18,8 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self' data:",
       "img-src 'self' data: blob: https://www.google-analytics.com",
-      "connect-src 'self' https://api.emailjs.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com",
+      // data: is required for @react-pdf/renderer's base64-inlined Yoga WASM fetch (see serverExternalPackages note below).
+      "connect-src 'self' data: https://api.emailjs.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com",
       "frame-src 'self' blob:",
       "worker-src 'self' blob:",
     ].join('; '),
