@@ -10,7 +10,7 @@ const Hero = () => {
   const { t } = useLanguage();
   const hero = t.hero;
   const portfolio = t.portfolio;
-  const coreProjectIds = ['velvet', 'nightfall', 'venue', 'aster', 'relay'];
+  const coreProjectIds = ['velvet', 'nightfall', 'venue'];
   const projects = coreProjectIds
     .map((id) => portfolio.projects.find((project) => project.id === id))
     .filter((project): project is (typeof portfolio.projects)[number] => Boolean(project));
@@ -124,11 +124,9 @@ const Hero = () => {
           >
             {projects.map((project, i) => {
               const positions = [
-                'top-0 left-0 -rotate-2 z-10',
-                'top-5 right-0 rotate-2 z-20',
-                'top-[31%] left-2 rotate-1 z-30',
-                'top-[35%] right-2 -rotate-1 z-40',
-                'bottom-0 left-1/2 -translate-x-1/2 rotate-1 z-50',
+                'top-0 left-0 -rotate-3 z-10',
+                'top-[24%] right-0 rotate-3 z-20',
+                'bottom-0 left-1/2 -translate-x-1/2 -rotate-1 z-30',
               ];
               return (
                 <motion.a
