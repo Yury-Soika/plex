@@ -11,7 +11,7 @@ import { trackAnalyticsEvent } from '../lib/analytics';
 const Portfolio = () => {
   const { t } = useLanguage();
   const portfolioData = t.portfolio;
-  const featuredProjectIds = ['aster', 'relay', 'velvet', 'nightfall', 'venue'];
+  const featuredProjectIds = ['velvet', 'nightfall', 'venue', 'aster', 'relay'];
   const projects = featuredProjectIds
     .map((id) => portfolioData.projects.find((project) => project.id === id))
     .filter((project): project is (typeof portfolioData.projects)[number] => Boolean(project));

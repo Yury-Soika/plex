@@ -10,7 +10,7 @@ const Hero = () => {
   const { t } = useLanguage();
   const hero = t.hero;
   const portfolio = t.portfolio;
-  const coreProjectIds = ['aster', 'relay', 'velvet', 'nightfall', 'venue'];
+  const coreProjectIds = ['velvet', 'nightfall', 'venue', 'aster', 'relay'];
   const projects = coreProjectIds
     .map((id) => portfolio.projects.find((project) => project.id === id))
     .filter((project): project is (typeof portfolio.projects)[number] => Boolean(project));

@@ -77,12 +77,12 @@ const make = (c: Copy): Positioning => ({
     eyebrow: c.nav[1], title: c.workTitle, highlight: c.workHighlight, subtitle: c.portfolioSubtitle, note: c.portfolioNote,
     actions: { viewGallery: 'View gallery', visitSite: 'Open interactive preview', downloadApk: 'Download APK', iosComingSoon: 'iOS — Coming soon', viewDetails: 'View details', demo: 'Concept' },
     projects: [
-      { id: 'aster', category: commerceProject[c.lang ?? 'en'].category, tag: 'Concept · Interactive Preview', description: commerceProject[c.lang ?? 'en'].description },
-      { id: 'relay', category: 'AI-assisted Business Operations', tag: 'Concept · Case Study', description: 'A cross-industry operations concept that turns incoming requests into structured work through AI-assisted triage, rules, human approval, and connected system updates.' },
       { id: 'velvet', category: c.projectCategories[0], tag: 'Concept · Interactive Preview', description: 'A hospitality concept demonstrating a conversion-led website, editorial content, bookings, and immersive visual direction.' },
       { id: 'nightfall', category: c.projectCategories[1], tag: 'Concept · Interactive Preview', description: 'A hospitality concept for availability, reservations, customer self-service, and an operational admin view.' },
       { id: 'venue', category: c.projectCategories[2], tag: 'Concept · Interactive Preview', description: 'A SaaS operations concept with bookings, CRM, workflows, role-aware views, and reporting patterns.' },
+      { id: 'aster', category: commerceProject[c.lang ?? 'en'].category, tag: 'Concept · Interactive Preview', description: commerceProject[c.lang ?? 'en'].description },
       { id: 'venue-mobile', category: c.projectCategories[3], tag: 'Concept · Interactive Preview', description: 'A mobile operations concept for teams who need key tasks, alerts, and customer context away from a desk.' },
+      { id: 'relay', category: 'AI-assisted Business Operations', tag: 'Concept · Case Study', description: 'A cross-industry operations concept that turns incoming requests into structured work through AI-assisted triage, rules, human approval, and connected system updates.' },
     ],
   },
   tech: {

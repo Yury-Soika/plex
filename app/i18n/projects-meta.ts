@@ -4,15 +4,6 @@ import type { ProjectMeta } from './types';
 // description) lives in each language file, matched to these entries by id.
 export const projectsMeta: ProjectMeta[] = [
   {
-    id: 'aster',
-    title: 'Aster Supply',
-    gradient: 'from-amber-500/20 to-orange-500/20',
-    letter: 'A',
-    url: 'https://demo.plex.ee/aster/',
-    image: '/preview-aster-commerce.svg',
-    pageUrl: '/work/aster',
-  },
-  {
     id: 'velvet',
     title: 'Velvet Lounge',
     gradient: 'from-purple-500/20 to-pink-500/20',
@@ -38,6 +29,15 @@ export const projectsMeta: ProjectMeta[] = [
     url: 'https://venue.plex.ee/product',
     image: '/preview-venue.webp',
     pageUrl: '/work/venue',
+  },
+  {
+    id: 'aster',
+    title: 'Aster Supply',
+    gradient: 'from-amber-500/20 to-orange-500/20',
+    letter: 'A',
+    url: 'https://demo.plex.ee/aster/',
+    image: '/preview-aster-commerce.svg',
+    pageUrl: '/work/aster',
   },
   {
     id: 'venue-mobile',
