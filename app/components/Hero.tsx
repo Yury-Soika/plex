@@ -125,8 +125,8 @@ const Hero = () => {
             {projects.map((project, i) => {
               const positions = [
                 'top-0 left-0 -rotate-3 z-10',
-                'top-[24%] right-0 rotate-3 z-20',
-                'bottom-0 left-1/2 -translate-x-1/2 -rotate-1 z-30',
+                'top-[16%] right-0 rotate-3 z-20',
+                'top-[32%] left-1/2 -translate-x-1/2 -rotate-1 z-30',
               ];
               return (
                 <motion.a
@@ -145,7 +145,7 @@ const Hero = () => {
                     zIndex: 60,
                     transition: { duration: 0.25, ease: 'easeOut' },
                   }}
-                  className={`absolute w-[57%] aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/40 ring-1 ring-black/40 transition-shadow duration-300 hover:shadow-[0_20px_60px_-10px_rgba(168,85,247,0.45)] hover:border-accent/50 ${positions[i]}`}
+                  className={`absolute w-[60%] aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/40 ring-1 ring-black/40 transition-shadow duration-300 hover:shadow-[0_20px_60px_-10px_rgba(168,85,247,0.45)] hover:border-accent/50 ${positions[i]}`}
                 >
                   {project.image && (
                     <Image
