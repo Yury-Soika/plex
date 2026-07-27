@@ -3,9 +3,9 @@ import type { Content } from './types';
 export const en: Content = {
   site: {
     name: 'Plex',
-    tagline: 'Digital Studio for Nightlife & Hospitality',
+    tagline: 'Independent Digital Product Studio',
     description:
-      'Websites, booking systems, and mobile apps for nightclubs, restaurants, and hospitality venues. Built with Next.js, NestJS, and React Native.',
+      'Custom websites, e-commerce, SaaS platforms, web applications, mobile products, and practical AI automation for ambitious businesses.',
   },
   nav: {
     links: [
@@ -416,7 +416,7 @@ export const en: Content = {
       {
         heading: '2. Our Services',
         paragraphs: [
-          'Plex is a digital studio that designs and builds websites, booking systems, and mobile applications for nightlife and hospitality venues. The scope, deliverables, timeline, and price of any project are agreed in writing before work begins, following a discovery call. Concept projects shown on this site are demonstrations of our capabilities and are not offers of sale.',
+          'Plex is a digital product studio that designs and builds custom websites, landing pages, e-commerce, SaaS and web applications, booking systems, internal tools, mobile products, AI integrations, and business automation for companies across industries. The scope, deliverables, timeline, and price of any project are agreed in writing before work begins, following a discovery call. Concept projects shown on this site are demonstrations of our capabilities and are not offers of sale.',
         ],
       },
       {

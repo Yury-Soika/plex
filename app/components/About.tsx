@@ -1,11 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import { useLanguage } from '../i18n/LanguageProvider';
 
 const About = () => {
   const { t } = useLanguage();
   const aboutData = t.about;
+  const aboutLink = t.nav.links.find((link) => link.href === '/about');
 
   return (
     <section id='about' className='plex-section'>
@@ -27,6 +30,12 @@ const About = () => {
             <p className='text-lg text-foreground-muted leading-relaxed'>
               {aboutData.mission}
             </p>
+            {aboutLink && (
+              <Link href='/about' className='mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent hover:text-accent-hover'>
+                {aboutLink.name}
+                <ArrowRight className='h-4 w-4' />
+              </Link>
+            )}
 
             <div className='mt-10 grid grid-cols-2 gap-4'>
               {aboutData.stats.map((stat, index) => (

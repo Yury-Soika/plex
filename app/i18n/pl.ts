@@ -414,7 +414,7 @@ export const pl: Content = {
       {
         heading: '2. Nasze usługi',
         paragraphs: [
-          'Plex to studio cyfrowe, które projektuje i buduje strony, systemy rezerwacji i aplikacje mobilne dla lokali z branży nocnej i gastronomii. Zakres, rezultaty, harmonogram i cena każdego projektu są ustalane na piśmie przed rozpoczęciem prac, po rozmowie wstępnej. Projekty koncepcyjne pokazane na tej stronie są demonstracją naszych możliwości i nie stanowią ofert sprzedaży.',
+          'Plex to studio produktów cyfrowych, które projektuje i tworzy dla firm z różnych branż dopasowane strony internetowe, landing page, e-commerce, SaaS i aplikacje webowe, systemy rezerwacji, narzędzia wewnętrzne, produkty mobilne, integracje AI oraz automatyzację procesów biznesowych. Zakres, rezultaty, harmonogram i cena każdego projektu są ustalane na piśmie przed rozpoczęciem prac, po rozmowie wstępnej. Projekty koncepcyjne pokazane na tej stronie są demonstracją naszych możliwości i nie stanowią ofert sprzedaży.',
         ],
       },
       {

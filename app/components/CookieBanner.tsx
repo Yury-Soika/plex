@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { useLanguage } from '../i18n/LanguageProvider';
 
 const CONSENT_COOKIE_NAME = 'plex_cookie_consent';
@@ -56,11 +57,13 @@ const persistConsentChoice = (choice: ConsentChoice) => {
   }
 
   const oneYearInSeconds = 60 * 60 * 24 * 365;
-  document.cookie = `${CONSENT_COOKIE_NAME}=${choice}; path=/; max-age=${oneYearInSeconds}`;
+  const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+  document.cookie = `${CONSENT_COOKIE_NAME}=${choice}; path=/; max-age=${oneYearInSeconds}; SameSite=Lax${secure}`;
 };
 
 const CookieBanner = () => {
   const { t } = useLanguage();
+  const pathname = usePathname();
   const copy = t.cookie;
   // Track whether we've checked stored consent on the client
   const [hasCheckedConsent, setHasCheckedConsent] = useState(false);
@@ -74,7 +77,14 @@ const CookieBanner = () => {
     setHasCheckedConsent(true);
   }, []);
 
+  useEffect(() => {
+    const openPreferences = () => setIsVisible(true);
+    window.addEventListener('plex-open-consent', openPreferences);
+    return () => window.removeEventListener('plex-open-consent', openPreferences);
+  }, []);
+
   // Avoid initial flash: render nothing until we've checked on the client
+  if (pathname.startsWith('/labs/')) return null;
   if (!hasCheckedConsent) return null;
   if (!isVisible) return null;
 
@@ -89,8 +99,8 @@ const CookieBanner = () => {
 
   return (
     <div className='fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-surface/95 backdrop-blur-lg'>
-      <div className='mx-auto flex max-w-5xl flex-col gap-4 px-6 py-5 text-sm text-foreground-muted sm:flex-row sm:items-center sm:justify-between'>
-        <div className='space-y-1.5'>
+      <div className='mx-auto flex max-w-5xl flex-col gap-3 px-4 py-3 text-sm text-foreground-muted sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-4'>
+        <div className='space-y-1'>
           <p className='font-semibold text-foreground text-sm'>{copy.title}</p>
           <p className='text-xs leading-relaxed'>{copy.body}</p>
           <p className='text-xs'>
@@ -105,7 +115,7 @@ const CookieBanner = () => {
           </p>
         </div>
 
-        <div className='flex flex-shrink-0 flex-row gap-2 sm:flex-col sm:items-end'>
+        <div className='flex flex-shrink-0 flex-row items-center gap-2 sm:flex-col sm:items-end'>
           <button
             type='button'
             onClick={() => handleChoice('all')}

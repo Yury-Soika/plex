@@ -1,202 +1,90 @@
-# Plex - Digital Agency Website
+# Plex
 
-Premium digital agency website for nightlife and entertainment venues.
+Plex is the studio website for an independent European digital product studio. It presents custom websites, web applications, booking systems, internal tools, mobile applications, AI integrations, and business automation.
 
-## 🚀 Tech Stack
+Hospitality remains a demonstrated area of expertise, but the offer is designed for service businesses and product teams across industries.
 
-- **Framework:** Next.js 15 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion
-- **Icons:** Lucide React
+## Stack
 
-## 🎨 Features
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- EmailJS for the contact workflow
+- Four locales: English, Estonian, Polish, and Russian
 
-- ✅ Modern, responsive design
-- ✅ Dark theme with purple/blue accents
-- ✅ Smooth scroll animations
-- ✅ Interactive components
-- ✅ Contact form
-- ✅ Portfolio showcase
-- ✅ Service packages
-- ✅ Mobile-friendly navigation
-- ✅ SEO optimized
-- ✅ **Content Management System** - All text in one JSON file
-- ✅ TypeScript for type safety
-- ✅ No hardcoded content
-
-## 📁 Project Structure
-
-```
-app/
-├── components/
-│   ├── Navbar.tsx         # Fixed navigation bar
-│   ├── Hero.tsx           # Hero section with CTA
-│   ├── Services.tsx       # Services grid
-│   ├── Portfolio.tsx      # Portfolio projects
-│   ├── TechStack.tsx      # Technologies used
-│   ├── Process.tsx        # Work process timeline
-│   ├── Pricing.tsx        # Pricing packages
-│   ├── About.tsx          # About section
-│   ├── Contact.tsx        # Contact form
-│   └── Footer.tsx         # Footer with links
-├── data/
-│   └── content.json       # 🔥 All content in one place
-├── utils/
-│   └── content.ts         # Content management utilities
-├── globals.css            # Global styles
-├── layout.tsx             # Root layout
-└── page.tsx               # Main page
-```
-
-## 🛠️ Development
-
-### Install Dependencies
+## Local development
 
 ```bash
-npm install
+npm ci
+npm run dev -- --port 3100
 ```
 
-### Set Up Environment Variables
+Open `http://127.0.0.1:3100`.
+
+## Production checks
 
 ```bash
-cp .env.example .env
-```
-
-### Run Development Server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## 🌍 Environment Variables
-
-The application uses these essential environment variables:
-
-- `NODE_ENV` - Environment (development/production)
-- `PORT` - Server port (default: 3000)
-- `HOSTNAME` - Server hostname
-- `NEXT_PUBLIC_SITE_URL` - Your website URL
-- `NEXT_TELEMETRY_DISABLED` - Disable Next.js telemetry
-- `NODE_OPTIONS` - Node.js memory optimization
-
-Copy `.env.example` to `.env.local` for development or `.env.production` for production.
-
-### Build for Production
-
-```bash
+npm run lint
 npm run build
 ```
 
-### Start Production Server
+After starting the production build separately, run the dependency-free release
+smoke test:
 
 ```bash
-npm start
+npm run start -- --port 3100
+# In another terminal:
+npm run smoke
 ```
 
-## 🎯 Sections
+Use `PLEX_BASE_URL=https://your-preview-host.example npm run smoke` to verify a
+deployed preview. The test does not submit forms, call external previews, or
+change remote state.
 
-1. **Hero** - Eye-catching headline with CTAs
-2. **Services** - What we build (4 service cards)
-3. **Portfolio** - Showcase of work (concept projects)
-4. **Tech Stack** - Technologies we use
-5. **Process** - How we work (4-step timeline)
-6. **Pricing** - 3 pricing tiers (Starter, Professional, Enterprise)
-7. **About** - Company story and values
-8. **Contact** - Contact form and information
+The production contact form also needs the public EmailJS variables documented in `.env.example`. Without them, the UI deliberately reports that messaging is unavailable rather than showing a false success.
 
-## 🎨 Design Tokens
+Optional GA4 measurement is consent-gated and inactive without a configured
+measurement ID. The event policy and production verification procedure are in
+[`ANALYTICS.md`](./ANALYTICS.md).
 
-### Colors
+The boundary between locally verified work and production-only checks is
+documented in [`LAUNCH_READINESS.md`](./LAUNCH_READINESS.md).
 
-- Background: `#0a0a0a`
-- Surface: `#1a1a1a`
-- Accent: `#8b5cf6` (Purple)
-- Accent Hover: `#7c3aed`
+## Public information architecture
 
-### Fonts
+- `/` — studio overview
+- `/services` — capabilities and engagement models
+- `/work` — selected work
+- `/work/[project]` — case studies
+- `/labs/aster` — self-contained commerce and checkout workflow demo
+- `/labs/relay` — self-contained AI-assisted operations workflow demo
+- `/insights` — practical product and operations perspectives
+- `/insights/[article]` — static editorial guides with Article schema
+- `/expertise/hospitality` — retained industry expertise
+- `/about` — studio and leadership
+- `/contact` — qualified project enquiry
+- `/privacy` and `/terms` — legal information
 
-- Primary: Inter (Google Fonts)
+## Portfolio evidence policy
 
-## 📝 Customization
+Velvet, Nightfall, Venue, Venue Mobile, Relay, and Aster Supply are labelled as
+concepts unless real client and outcome evidence is available. Do not add client
+names, testimonials, metrics, launch claims, or production claims without
+verifiable source material and approval.
 
-### Update Content
+The Insights articles are Plex editorial perspectives. They deliberately avoid
+invented benchmarks, client outcomes, and time-sensitive claims. Long-form
+articles are currently published in English; the surrounding navigation and
+interface labels remain available in all four site languages.
 
-**All website content is managed in one place:**
+## Before deployment
 
-Edit `app/data/content.json` to update:
-
-- Site name, tagline, description
-- Navigation links
-- Hero section text
-- Services and features
-- Portfolio projects
-- Tech stack
-- Process steps
-- Pricing packages
-- About section
-- Contact form labels
-- Footer information
-
-No need to touch component files! 🎉
-
-### Change Colors
-
-Update color variables in `app/globals.css`:
-
-- `--background`: Main background color
-- `--foreground`: Text color
-- `--accent`: Primary accent color (buttons, links)
-- `--accent-hover`: Accent hover state
-
-### Content Management
-
-The content system includes:
-
-- **Type-safe**: TypeScript types for all content
-- **Easy to update**: Change text without touching code
-- **Localization ready**: Easy to add multiple languages
-- **Single source of truth**: One file for all content
-
-**Example content.json structure:**
-
-```json
-{
-  "hero": {
-    "title": "Plex",
-    "headline": "We Build Premium Digital",
-    "cta": {
-      "primary": "Get Started",
-      "secondary": "View Our Work"
-    }
-  }
-}
-```
-
-All content is imported via `app/utils/content.ts` with type safety.
-
-## 🚢 Deployment
-
-### Vercel (Recommended - Free & Easy)
-
-1. **Push to GitHub** (create repo and push your code)
-2. **Go to [Vercel](https://vercel.com)** and sign in with GitHub
-3. **Import your repository** - Click "Import Project"
-4. **Deploy** - Vercel auto-detects Next.js and deploys
-5. **Done!** - Your site is live with automatic deployments
-
-Every push to `main` branch = automatic deployment 🚀
-
-### Alternative: Netlify, Railway, or any Node.js hosting
-
-This is a standard Next.js app - works anywhere!
-
-## 📧 Contact
-
-For questions or support, email: contact@plex.ee
-
-## 📄 License
-
-© 2025 Plex. All rights reserved.
+1. Run lint and a clean production build.
+2. Verify every locale and public route at desktop and mobile widths.
+3. Confirm EmailJS variables with a controlled test recipient.
+4. Check canonical URLs, sitemap, robots rules, and social previews.
+5. Confirm external demo destinations are healthy.
+6. Record real-device coverage separately for mobile applications.
+7. If GA4 is enabled, verify consent withdrawal and every allowed event against
+   the approved production property.

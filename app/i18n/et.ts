@@ -414,7 +414,7 @@ export const et: Content = {
       {
         heading: '2. Meie teenused',
         paragraphs: [
-          'Plex on digitaalstuudio, mis kujundab ja ehitab veebisaite, broneerimissüsteeme ja mobiilirakendusi ööelu ja külalislahkuse asutustele. Iga projekti maht, väljundid, ajakava ja hind lepitakse kirjalikult kokku enne töö algust, pärast tutvumiskõnet. Sellel saidil näidatud kontseptsiooniprojektid on meie võimekuse demonstratsioonid ega ole müügipakkumised.',
+          'Plex on digitaaltoodete stuudio, mis kujundab ja arendab eri valdkondade ettevõtetele kohandatud veebisaite, maandumislehti, e-kaubandust, SaaS- ja veebirakendusi, broneerimissüsteeme, sisetööriistu, mobiilitooteid, AI-integratsioone ning äritegevuse automatiseerimist. Iga projekti maht, väljundid, ajakava ja hind lepitakse kirjalikult kokku enne töö algust, pärast tutvumiskõnet. Sellel saidil näidatud kontseptsiooniprojektid on meie võimekuse demonstratsioonid ega ole müügipakkumised.',
         ],
       },
       {

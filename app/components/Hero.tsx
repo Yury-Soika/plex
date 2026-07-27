@@ -4,12 +4,16 @@ import { motion } from 'framer-motion';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { useLanguage } from '../i18n/LanguageProvider';
+import { trackAnalyticsEvent } from '../lib/analytics';
 
 const Hero = () => {
   const { t } = useLanguage();
   const hero = t.hero;
   const portfolio = t.portfolio;
-  const projects = portfolio.projects.slice(0, 3);
+  const coreProjectIds = ['aster', 'relay', 'velvet', 'nightfall', 'venue'];
+  const projects = coreProjectIds
+    .map((id) => portfolio.projects.find((project) => project.id === id))
+    .filter((project): project is (typeof portfolio.projects)[number] => Boolean(project));
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -29,12 +33,12 @@ const Hero = () => {
       <div className='plex-container relative z-10'>
         <div className='grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] gap-12 lg:gap-16 items-center'>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
             <motion.span
-              initial={{ opacity: 0 }}
+              initial={false}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className='inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-foreground-muted backdrop-blur-sm'
@@ -44,7 +48,7 @@ const Hero = () => {
             </motion.span>
 
             <motion.h1
-              initial={{ opacity: 0, y: 18 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               className='mt-6 text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight'
@@ -56,7 +60,7 @@ const Hero = () => {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
               className='mt-6 max-w-xl text-base sm:text-lg text-foreground-muted leading-relaxed'
@@ -65,20 +69,26 @@ const Hero = () => {
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 14 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               className='mt-9 flex flex-col sm:flex-row gap-4'
             >
               <button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => {
+                  trackAnalyticsEvent('cta_click', { location: 'homepage_hero', destination: 'contact' });
+                  scrollToSection('contact');
+                }}
                 className='inline-flex items-center justify-center gap-2 rounded-full bg-accent hover:bg-accent-hover text-white px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] shadow-xl shadow-purple-500/30 transition-all'
               >
                 {hero.cta.primary}
                 <ArrowRight className='w-4 h-4' />
               </button>
               <button
-                onClick={() => scrollToSection('portfolio')}
+                onClick={() => {
+                  trackAnalyticsEvent('cta_click', { location: 'homepage_hero', destination: 'portfolio' });
+                  scrollToSection('portfolio');
+                }}
                 className='inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-foreground px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] backdrop-blur-sm transition-all'
               >
                 {hero.cta.secondary}
@@ -86,7 +96,7 @@ const Hero = () => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0 }}
+              initial={false}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               className='mt-10 flex flex-wrap items-center gap-6 text-xs text-foreground-muted'
@@ -107,16 +117,18 @@ const Hero = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className='relative h-[440px] sm:h-[500px] lg:h-[560px] hidden md:block'
+            className='relative hidden h-[500px] md:block lg:h-[560px]'
           >
             {projects.map((project, i) => {
               const positions = [
-                'top-0 left-0 lg:left-4 -rotate-3 z-10',
-                'top-16 left-1/2 -translate-x-1/2 rotate-1 z-20',
-                'bottom-0 right-0 lg:right-4 rotate-3 z-30',
+                'top-0 left-0 -rotate-2 z-10',
+                'top-5 right-0 rotate-2 z-20',
+                'top-[31%] left-2 rotate-1 z-30',
+                'top-[35%] right-2 -rotate-1 z-40',
+                'bottom-0 left-1/2 -translate-x-1/2 rotate-1 z-50',
               ];
               return (
                 <motion.a
@@ -124,17 +136,19 @@ const Hero = () => {
                   href={project.url ?? '#portfolio'}
                   target={project.url ? '_blank' : undefined}
                   rel='noopener noreferrer'
-                  initial={{ opacity: 0, y: 20 }}
+                  onClick={() => trackAnalyticsEvent('work_open', { location: 'homepage_hero', project: project.id })}
+                  initial={false}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: 0.4 + i * 0.15 }}
                   whileHover={{ scale: 1.04, rotate: 0, zIndex: 40 }}
-                  className={`absolute w-[78%] aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/40 ring-1 ring-black/40 ${positions[i]}`}
+                  className={`absolute w-[57%] aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-900/40 ring-1 ring-black/40 ${positions[i]}`}
                 >
                   {project.image && (
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
+                      sizes='(min-width: 1024px) 39vw, 70vw'
                       className='object-cover object-top'
                     />
                   )}
@@ -155,8 +169,11 @@ const Hero = () => {
       </div>
 
       <motion.button
-        onClick={() => scrollToSection('portfolio')}
-        initial={{ opacity: 0 }}
+        onClick={() => {
+          trackAnalyticsEvent('cta_click', { location: 'homepage_scroll_prompt', destination: 'portfolio' });
+          scrollToSection('portfolio');
+        }}
+        initial={false}
         animate={{ opacity: 1, y: [0, 8, 0] }}
         transition={{ opacity: { duration: 0.6, delay: 1 }, y: { duration: 2, repeat: Infinity } }}
         className='absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-foreground-dim hover:text-foreground transition-colors'

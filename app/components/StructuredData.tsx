@@ -1,7 +1,7 @@
 const SITE_URL = 'https://plex.ee';
 
-// JSON-LD structured data so search engines understand Plex is a hospitality
-// software studio. Rendered as a static <script> in the <body> — Google reads
+// JSON-LD structured data so search engines understand Plex is an independent
+// digital product studio. Rendered as a static <script> in the <body> — Google reads
 // it regardless of placement.
 const StructuredData = () => {
   const data = {
@@ -10,7 +10,7 @@ const StructuredData = () => {
     '@id': `${SITE_URL}/#organization`,
     name: 'Plex',
     description:
-      'Digital studio building custom websites, booking systems, and mobile apps for nightclubs, restaurants, and hospitality venues.',
+      'Independent digital product studio building custom websites, e-commerce, SaaS platforms, web applications, mobile products, and practical AI automation for ambitious businesses.',
     url: SITE_URL,
     email: 'contact@plex.ee',
     image: `${SITE_URL}/og-image.png`,
@@ -31,10 +31,14 @@ const StructuredData = () => {
     },
     knowsAbout: [
       'Web development',
+      'E-commerce development',
       'Booking systems',
+      'SaaS development',
+      'Web application development',
       'Mobile app development',
+      'Business process automation',
+      'Artificial intelligence',
       'Hospitality technology',
-      'Nightlife venue software',
     ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -44,36 +48,36 @@ const StructuredData = () => {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Venue Websites',
+            name: 'Websites & Landing Pages',
             description:
-              'Landing pages and full sites that turn visitors into bookings.',
+              'Custom websites and landing pages built for clarity, conversion, and maintainable content.',
           },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Table & Booking Systems',
+            name: 'E-commerce & Booking',
             description:
-              'Reservation flows your hosts and guests both actually enjoy.',
+              'Catalogues, payments, reservations, and customer flows built around the business.',
           },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Operations Dashboards',
+            name: 'SaaS & Web Applications',
             description:
-              'Back-of-house tools for managing the venue end-to-end.',
+              'Customer portals, subscriptions, internal tools, and operational dashboards.',
           },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Staff Mobile Apps',
+            name: 'Mobile, AI & Automation',
             description:
-              'Native iOS & Android apps for on-the-floor venue teams.',
+              'Mobile products, integrations, AI workflows, and business automation.',
           },
         },
       ],

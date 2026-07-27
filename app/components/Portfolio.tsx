@@ -6,11 +6,15 @@ import { ArrowUpRight, Globe, Download, Apple, ChevronLeft, ChevronRight, X } fr
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '../i18n/LanguageProvider';
+import { trackAnalyticsEvent } from '../lib/analytics';
 
 const Portfolio = () => {
   const { t } = useLanguage();
   const portfolioData = t.portfolio;
-  const projects = portfolioData.projects;
+  const featuredProjectIds = ['aster', 'relay', 'velvet', 'nightfall', 'venue'];
+  const projects = featuredProjectIds
+    .map((id) => portfolioData.projects.find((project) => project.id === id))
+    .filter((project): project is (typeof portfolioData.projects)[number] => Boolean(project));
   const [lightboxProject, setLightboxProject] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -45,6 +49,13 @@ const Portfolio = () => {
   }, [lightboxImages.length]);
 
   const openGallery = (projectTitle: string, imageIndex: number) => {
+    const project = projects.find((item) => item.title === projectTitle);
+    if (project) {
+      trackAnalyticsEvent('work_open', {
+        location: 'homepage_gallery',
+        project: project.id,
+      });
+    }
     setLightboxProject(projectTitle);
     setLightboxIndex(imageIndex);
   };
@@ -99,6 +110,7 @@ const Portfolio = () => {
                 src={project.image}
                 alt={project.title}
                 fill
+                sizes='(min-width: 1024px) 55vw, 100vw'
                 className={`${project.apkUrl ? 'object-contain object-center p-3 sm:p-4' : 'object-cover object-top'} transition-transform duration-700 group-hover:scale-105`}
               />
             ) : (
@@ -133,20 +145,26 @@ const Portfolio = () => {
                       </div>
                     </button>
                   ) : (
-                    <a
-                      href={project.url ?? '#'}
-                      target={project.url ? '_blank' : undefined}
-                      rel='noopener noreferrer'
-                      className={previewClassName}
-                    >
-                      {previewImage}
-                      <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
-                      {project.url && (
+                    project.url ? (
+                      <a
+                        href={project.url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        onClick={() => trackAnalyticsEvent('work_open', { location: 'homepage_preview', project: project.id })}
+                        className={previewClassName}
+                      >
+                        {previewImage}
+                        <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
                         <div className='absolute top-4 right-4 inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300'>
                           <ArrowUpRight className='w-5 h-5' />
                         </div>
-                      )}
-                    </a>
+                      </a>
+                    ) : (
+                      <Link href={project.pageUrl ?? '/work'} className={previewClassName}>
+                        {previewImage}
+                        <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
+                      </Link>
+                    )
                   )}
 
                   {project.galleryImages && (
@@ -163,6 +181,7 @@ const Portfolio = () => {
                             src={image.src}
                             alt={image.alt}
                             fill
+                            sizes='(min-width: 640px) 25vw, 50vw'
                             className='object-contain object-center p-1.5 transition-transform duration-500 group-hover/thumb:scale-105'
                           />
                         </button>
@@ -189,6 +208,7 @@ const Portfolio = () => {
                       href={project.url}
                       target='_blank'
                       rel='noopener noreferrer'
+                      onClick={() => trackAnalyticsEvent('work_open', { location: 'homepage_demo_link', project: project.id })}
                       className='mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent hover:text-accent-hover transition-colors group'
                     >
                       <Globe className='w-4 h-4' />
@@ -214,7 +234,8 @@ const Portfolio = () => {
                   {project.pageUrl && (
                     <Link
                       href={project.pageUrl}
-                      className='mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent hover:text-accent-hover transition-colors group'
+                      onClick={() => trackAnalyticsEvent('work_open', { location: 'homepage_case_link', project: project.id })}
+                      className={`${project.url || project.apkUrl ? 'mt-5' : 'mt-6'} inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent hover:text-accent-hover transition-colors group`}
                     >
                       {portfolioData.actions.viewDetails}
                       <ArrowUpRight className='w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
@@ -228,7 +249,7 @@ const Portfolio = () => {
 
         {lightboxImages.length > 0 && (
           <div
-            className='fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4 py-6 backdrop-blur-md'
+            className='fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4 py-6 backdrop-blur-md cursor-pointer'
             role='dialog'
             aria-modal='true'
             aria-label='Venue Mobile screenshot gallery'
@@ -268,13 +289,14 @@ const Portfolio = () => {
             </button>
 
             <div
-              className='relative h-full max-h-[86vh] w-full max-w-6xl'
+              className='relative h-full max-h-[86vh] w-full max-w-6xl cursor-default'
               onClick={(event) => event.stopPropagation()}
             >
               <Image
                 src={lightboxImages[lightboxIndex].src}
                 alt={lightboxImages[lightboxIndex].alt}
                 fill
+                sizes='100vw'
                 priority
                 className='object-contain'
               />

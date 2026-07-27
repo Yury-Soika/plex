@@ -3,43 +3,79 @@
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { Calendar, Mail, MessageSquare, Send } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageProvider';
+import { extended } from '../i18n/extended';
+import { trackAnalyticsEvent } from '../lib/analytics';
 
 const inputCls =
   'w-full rounded-xl border border-white/10 bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-foreground-dim outline-none focus:border-accent/60 transition-colors';
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const contactData = t.contact;
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const extra = extended[lang];
+  const [formData, setFormData] = useState({
+    name: '',
+    company: '',
+    email: '',
+    projectType: '',
+    timeline: '',
+    budget: '',
+    message: '',
+  });
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const hasStarted = useRef(false);
+
+  const trackFormStart = () => {
+    if (hasStarted.current) return;
+    hasStarted.current = true;
+    trackAnalyticsEvent('contact_form_start', { location: 'contact_form' });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('idle');
+    setIsSubmitting(true);
 
     try {
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+      if (!serviceId || !templateId || !publicKey) {
+        trackAnalyticsEvent('contact_form_submit', { outcome: 'unconfigured' });
+        throw new Error('Contact delivery is not configured');
+      }
+
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        serviceId,
+        templateId,
         {
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
+          ...formData,
           time: new Date().toLocaleString(),
         },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+        publicKey
       );
       setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      trackAnalyticsEvent('contact_form_submit', { outcome: 'success' });
+      setFormData({ name: '', company: '', email: '', projectType: '', timeline: '', budget: '', message: '' });
     } catch {
       setStatus('error');
+      if (
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID &&
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID &&
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      ) {
+        trackAnalyticsEvent('contact_form_submit', { outcome: 'delivery_error' });
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -78,6 +114,7 @@ const Contact = () => {
               href='https://cal.com/plexstudio'
               target='_blank'
               rel='noopener noreferrer'
+              onClick={() => trackAnalyticsEvent('calendar_click', { location: 'contact_details' })}
               className='block rounded-2xl border border-accent/30 bg-gradient-to-br from-purple-950/40 to-surface/40 p-6 hover:border-accent/50 transition-colors group'
             >
               <div className='flex items-start gap-4'>
@@ -106,6 +143,7 @@ const Contact = () => {
                 <div className='text-sm font-semibold mb-1'>{contactData.emailLabel}</div>
                 <a
                   href='mailto:contact@plex.ee'
+                  onClick={() => trackAnalyticsEvent('email_click', { location: 'contact_details' })}
                   className='text-foreground-muted hover:text-accent transition-colors text-sm'
                 >
                   contact@plex.ee
@@ -146,6 +184,7 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
             onSubmit={handleSubmit}
+            onFocus={trackFormStart}
             className='rounded-2xl border border-white/10 bg-background/40 p-7 space-y-4'
           >
             <div>
@@ -165,6 +204,21 @@ const Contact = () => {
             </div>
 
             <div>
+              <label htmlFor='company' className='block text-xs font-medium uppercase tracking-[0.16em] text-foreground-muted mb-2'>
+                {extra.pages.contact.company} <span className='normal-case tracking-normal text-foreground-dim'>({extra.pages.contact.optional})</span>
+              </label>
+              <input
+                type='text'
+                id='company'
+                name='company'
+                value={formData.company}
+                onChange={handleChange}
+                autoComplete='organization'
+                className={inputCls}
+              />
+            </div>
+
+            <div>
               <label htmlFor='email' className='block text-xs font-medium uppercase tracking-[0.16em] text-foreground-muted mb-2'>
                 {contactData.form.email}
               </label>
@@ -175,9 +229,64 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                autoComplete='email'
                 className={inputCls}
                 placeholder={contactData.form.placeholders.email}
               />
+            </div>
+
+            <div className='grid gap-4 sm:grid-cols-2'>
+              <div>
+                <label htmlFor='projectType' className='block text-xs font-medium uppercase tracking-[0.16em] text-foreground-muted mb-2'>
+                  {extra.pages.contact.projectType}
+                </label>
+                <select
+                  id='projectType'
+                  name='projectType'
+                  value={formData.projectType}
+                  onChange={handleChange}
+                  required
+                  className={inputCls}
+                >
+                  <option value='' disabled>—</option>
+                  {t.services.items.map((service) => (
+                    <option key={service.title} value={service.title}>{service.title}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label htmlFor='timeline' className='block text-xs font-medium uppercase tracking-[0.16em] text-foreground-muted mb-2'>
+                  {extra.pages.contact.timeline} <span className='normal-case tracking-normal text-foreground-dim'>({extra.pages.contact.optional})</span>
+                </label>
+                <input
+                  type='text'
+                  id='timeline'
+                  name='timeline'
+                  value={formData.timeline}
+                  onChange={handleChange}
+                  placeholder='Q4 2026'
+                  className={inputCls}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor='budget' className='block text-xs font-medium uppercase tracking-[0.16em] text-foreground-muted mb-2'>
+                {extra.pages.contact.budget} <span className='normal-case tracking-normal text-foreground-dim'>({extra.pages.contact.optional})</span>
+              </label>
+              <select
+                id='budget'
+                name='budget'
+                value={formData.budget}
+                onChange={handleChange}
+                className={inputCls}
+              >
+                <option value=''>—</option>
+                <option value='Under €5,000'>&lt; €5,000</option>
+                <option value='€5,000–€15,000'>€5,000–€15,000</option>
+                <option value='€15,000–€40,000'>€15,000–€40,000</option>
+                <option value='€40,000+'>€40,000+</option>
+              </select>
             </div>
 
             <div>
@@ -198,12 +307,14 @@ const Contact = () => {
 
             <button
               type='submit'
-              className='w-full inline-flex items-center justify-center gap-2 rounded-full bg-accent hover:bg-accent-hover text-white py-3 text-xs font-semibold uppercase tracking-[0.18em] shadow-lg shadow-purple-500/30 transition-all'
+              disabled={isSubmitting}
+              className='w-full inline-flex items-center justify-center gap-2 rounded-full bg-accent hover:bg-accent-hover disabled:cursor-wait disabled:opacity-60 text-white py-3 text-xs font-semibold uppercase tracking-[0.18em] shadow-lg shadow-purple-500/30 transition-all'
             >
               {contactData.form.submit}
               <Send className='w-4 h-4' />
             </button>
 
+            <div aria-live='polite' aria-atomic='true'>
             {status === 'success' && (
               <motion.div
                 initial={{ opacity: 0 }}
@@ -223,6 +334,7 @@ const Contact = () => {
                 {contactData.error}
               </motion.div>
             )}
+            </div>
           </motion.form>
         </div>
       </div>

@@ -1,37 +1,26 @@
 'use client';
 
 import Script from 'next/script';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { hasAnalyticsConsent } from '../lib/analytics';
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const CONSENT_COOKIE_NAME = 'plex_cookie_consent';
 
-// Mirrors the consent logic in CookieBanner: analytics only loads when the
-// visitor has chosen "Allow all".
-const hasAnalyticsConsent = (): boolean => {
-  if (typeof window === 'undefined') return false;
-
-  try {
-    const match = document.cookie
-      .split(';')
-      .map((c) => c.trim())
-      .find((c) => c.startsWith(`${CONSENT_COOKIE_NAME}=`));
-    if (match && match.split('=')[1] === 'all') return true;
-
-    const stored = window.localStorage.getItem(CONSENT_COOKIE_NAME);
-    if (stored) {
-      const parsed = JSON.parse(stored) as { choice?: string };
-      return parsed.choice === 'all';
-    }
-  } catch {
-    return false;
-  }
-
-  return false;
+const clearGoogleAnalyticsCookies = () => {
+  document.cookie
+    .split(';')
+    .map((item) => item.trim().split('=')[0])
+    .filter((name) => name === '_ga' || name.startsWith('_ga_'))
+    .forEach((name) => {
+      document.cookie = `${name}=; path=/; max-age=0; SameSite=Lax`;
+    });
 };
 
 const Analytics = () => {
+  const pathname = usePathname();
   const [consented, setConsented] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     if (hasAnalyticsConsent()) setConsented(true);
@@ -40,6 +29,10 @@ const Analytics = () => {
     // can start (or stay off) immediately without a page reload.
     const onConsentChange = (event: Event) => {
       const choice = (event as CustomEvent<string>).detail;
+      if (choice !== 'all') {
+        window.gtag?.('consent', 'update', { analytics_storage: 'denied' });
+        clearGoogleAnalyticsCookies();
+      }
       setConsented(choice === 'all');
     };
 
@@ -48,22 +41,33 @@ const Analytics = () => {
       window.removeEventListener('plex-consent-change', onConsentChange);
   }, []);
 
+  useEffect(() => {
+    if (!GA_ID || !consented || !ready || pathname.startsWith('/labs/')) return;
+
+    window.gtag?.('config', GA_ID, {
+      anonymize_ip: true,
+      page_path: pathname,
+      page_location: window.location.href,
+      page_title: document.title,
+    });
+  }, [consented, pathname, ready]);
+
+  if (pathname.startsWith('/labs/')) return null;
   if (!GA_ID || !consented) return null;
 
   return (
     <>
+      <Script id='ga-init' strategy='afterInteractive' onReady={() => setReady(true)}>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function(){window.dataLayer.push(arguments);}
+          window.gtag('js', new Date());
+        `}
+      </Script>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
         strategy='afterInteractive'
       />
-      <Script id='ga-init' strategy='afterInteractive'>
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_ID}', { anonymize_ip: true });
-        `}
-      </Script>
     </>
   );
 };

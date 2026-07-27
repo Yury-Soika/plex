@@ -4,6 +4,7 @@ import { en } from './en';
 import { et } from './et';
 import { pl } from './pl';
 import { ru } from './ru';
+import { positioning } from './positioning';
 
 // What components consume: identical to Content, but portfolio projects are
 // merged with their language-independent metadata.
@@ -24,10 +25,10 @@ const resolve = (c: Content): ResolvedContent => ({
 });
 
 export const content: Record<Lang, ResolvedContent> = {
-  en: resolve(en),
-  et: resolve(et),
-  pl: resolve(pl),
-  ru: resolve(ru),
+  en: resolve({ ...en, ...positioning.en }),
+  et: resolve({ ...et, ...positioning.et }),
+  pl: resolve({ ...pl, ...positioning.pl }),
+  ru: resolve({ ...ru, ...positioning.ru }),
 };
 
 export { en, et, pl, ru };

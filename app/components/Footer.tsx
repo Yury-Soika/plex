@@ -4,10 +4,18 @@ import Link from 'next/link';
 import { Linkedin, Instagram, Facebook } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageProvider';
 import { SOCIAL } from '../i18n/site';
+import type { Lang } from '../i18n/types';
+
+const cookiePreferenceLabels: Record<Lang, string> = {
+  en: 'Cookie preferences',
+  et: 'Küpsiste eelistused',
+  pl: 'Ustawienia plików cookie',
+  ru: 'Настройки cookie',
+};
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const footerData = t.footer;
   const siteInfo = t.site;
 
@@ -117,6 +125,13 @@ const Footer = () => {
                   {link.name}
                 </Link>
               ))}
+              <button
+                type='button'
+                onClick={() => window.dispatchEvent(new Event('plex-open-consent'))}
+                className='text-xs text-foreground-dim hover:text-foreground-muted transition-colors'
+              >
+                {cookiePreferenceLabels[lang]}
+              </button>
             </div>
           </div>
         </div>

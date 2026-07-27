@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 
 :root {
+  --font-inter: 'Inter';
+  --font-display: 'Playfair Display';
   --background: #0a0a0f;
   --surface: #14141d;
   --surface-2: #1c1c2a;
@@ -69,6 +71,25 @@ body {
   min-width: 320px;
 }
 
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-180%);
+  border-radius: 0.5rem;
+  background: var(--foreground);
+  color: var(--background);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform 150ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 .plex-display {
   font-family: var(--font-display), Georgia, 'Times New Roman', serif;
   font-style: italic;
@@ -127,4 +148,19 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

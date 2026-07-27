@@ -68,7 +68,7 @@ const node = {
                 },
                 children: [
                   { type: 'div', props: { style: { width: 8, height: 8, borderRadius: 4, background: '#a855f7' } } },
-                  'Digital Studio · Nightlife & Hospitality',
+                  'Independent Digital Product Studio',
                 ],
               },
             },
@@ -80,12 +80,12 @@ const node = {
                   letterSpacing: -2, maxWidth: 1000, display: 'flex', flexWrap: 'wrap',
                 },
                 children: [
-                  'Websites, booking systems, and apps for ',
+                  'Websites and software built around ',
                   {
                     type: 'span',
                     props: {
                       style: { color: '#a855f7', fontFamily: 'Playfair', fontStyle: 'italic' },
-                      children: 'venues that care.',
+                      children: 'your business.',
                     },
                   },
                 ],
