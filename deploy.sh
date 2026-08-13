@@ -23,6 +23,9 @@ HOST="$(load_env_var DEPLOY_HOST "")"
 APP_ROOT="$(load_env_var DEPLOY_APP_ROOT "")"
 PORT="$(load_env_var DEPLOY_PORT "3000")"
 SSH_PORT="$(load_env_var DEPLOY_SSH_PORT "22")"
+# Optional: Apache document root (usually public_html). If set, maintenance.html is
+# copied there so Apache can serve it when the Node app is down — see docs/hosting/README.md.
+DOC_ROOT="$(load_env_var DEPLOY_DOC_ROOT "")"
 
 if [[ -z "${USER}" || -z "${HOST}" || -z "${APP_ROOT}" ]]; then
   echo "Missing DEPLOY_USER, DEPLOY_HOST, or DEPLOY_APP_ROOT — set them in .env (see .env.example)." >&2
@@ -66,6 +69,14 @@ ssh -p "${SSH_PORT}" "${USER}@${HOST}" bash -lc "
   rm -rf node_modules
   echo ' -> Removing next.config.ts so Next uses next.config.js (no TypeScript at runtime)'
   rm -f next.config.ts
+  if [[ -n '${DOC_ROOT}' ]]; then
+    # Apache serves this directly when the Node app is down, so it has to live on
+    # disk in the document root — not behind Next. See docs/hosting/README.md.
+    echo ' -> Copying maintenance.html to document root (${DOC_ROOT})'
+    cp public/maintenance.html '${DOC_ROOT}/maintenance.html'
+  else
+    echo ' -> DEPLOY_DOC_ROOT not set; skipping maintenance.html copy (see docs/hosting/README.md)'
+  fi
   echo ' -> Done. In the hosting panel: run Install dependencies (if needed), then Restart app.'
 "
 

@@ -26,6 +26,14 @@
 .DS_Store
 *.pem
 
+# Private business material — THIS REPO IS PUBLIC.
+# Prospect lists, outreach drafts and CV/proposal templates contain named
+# businesses, phone numbers, contact emails and pricing. They must never be
+# pushed to GitHub. Kept local only.
+/prospects/
+/outreach/
+/freelance/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

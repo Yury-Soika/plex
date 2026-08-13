@@ -1,0 +1,50 @@
+# ---------------------------------------------------------------------------
+# Plex — branded error pages when the Node app is down.
+#
+# APPEND these lines to the END of the existing .htaccess in the document root
+# (usually public_html/). Do NOT replace that file — on CloudLinux + Node.js
+# Selector it holds the Passenger directives that run the app, and clobbering it
+# takes the whole site down.
+#
+# Requires: maintenance.html present in the same document root.
+# ---------------------------------------------------------------------------
+
+# Serve the branded page for the errors Passenger returns when Node is dead or
+# restarting. 503 is the important one; 500/502 are included because a crashed
+# app can surface as either depending on how it died.
+ErrorDocument 500 /maintenance.html
+ErrorDocument 502 /maintenance.html
+ErrorDocument 503 /maintenance.html
+
+# The page itself must never be rewritten into the Node app — otherwise it is
+# unreachable in exactly the situation it exists for.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^maintenance\.html$ - [L]
+</IfModule>
+
+# Never let an outage page get cached. Without this a visitor (or a CDN) can be
+# pinned to "we're down" for minutes after the site is healthy again.
+<IfModule mod_headers.c>
+  <Files "maintenance.html">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    # Tell well-behaved clients and crawlers this is temporary, not a real
+    # outage of the URL itself — protects SEO during a long outage.
+    Header set Retry-After "300"
+  </Files>
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# OPTIONAL — planned maintenance switch.
+#
+# Uncomment this block to force EVERY request to the maintenance page on purpose
+# (e.g. while deploying something risky), then comment it out again when done.
+# Add your own IP to the second RewriteCond so you can still see the real site.
+# ---------------------------------------------------------------------------
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteCond %{REQUEST_URI} !^/maintenance\.html$
+#   RewriteCond %{REMOTE_ADDR} !^11\.22\.33\.44$
+#   RewriteRule ^(.*)$ /maintenance.html [R=503,L]
+# </IfModule>
