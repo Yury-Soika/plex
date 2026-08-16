@@ -60,7 +60,8 @@ const Contact = () => {
       setStatus('success');
       trackAnalyticsEvent('contact_form_submit', { outcome: 'success' });
       setFormData({ name: '', company: '', email: '', projectType: '', timeline: '', budget: '', message: '' });
-    } catch {
+    } catch (err) {
+      console.error('Contact form submission failed:', err);
       setStatus('error');
       if (
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID &&
@@ -282,10 +283,11 @@ const Contact = () => {
                 className={inputCls}
               >
                 <option value=''>—</option>
-                <option value='Under €5,000'>&lt; €5,000</option>
-                <option value='€5,000–€15,000'>€5,000–€15,000</option>
-                <option value='€15,000–€40,000'>€15,000–€40,000</option>
-                <option value='€40,000+'>€40,000+</option>
+                <option value='Under €500'>&lt; €500</option>
+                <option value='€500–€1,000'>€500–€1,000</option>
+                <option value='€1,000–€2,500'>€1,000–€2,500</option>
+                <option value='€2,500–€5,000'>€2,500–€5,000</option>
+                <option value='€5,000+'>€5,000+</option>
               </select>
             </div>
 
